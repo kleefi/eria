@@ -107,19 +107,41 @@ add_post_meta($post_id, "_wp_page_template", "template-produk.php", true);
 
     <div class="form-group">
         <label>Kategori</label>
-                <?php
-            $categories = get_categories( array(
+        <?php
+            $Parentcatargs = array(
                 'orderby' => 'name',
-                'hide_empty' => false,
-                'parent'  => 0
-            ) );
-            
-            foreach ( $categories as $category ) {
-                echo '<input type="checkbox" name="category[]" id="" value="'.$category->name.'">';
-                // echo $category->term_id;
-                echo $category->name;
+                'order' => 'ASC',
+                'use_desc_for_title' => 1,
+                'hide_empty' => 0,
+                'parent' => 0
+            );
+
+            $category = get_categories($Parentcatargs);
+            //print_r($category); //Return Array
+
+            foreach ($category as $Parentcat) {
+                echo '<input type="radio" name="category[]" id="" value="'.$Parentcat->name.'">';//Get Parent Category Name
+                echo $Parentcat->name;
+                echo "<br>";
+                $childargs = array(
+                    'child_of' => $Parentcat->cat_ID,
+                    'hide_empty' => 0,
+                    'parent' => $Parentcat->cat_ID
+                );
+
+
+                $childcategories = get_categories($childargs);
+                //print_r($childcategories); //Return Array
+                echo '<ul>';
+                foreach ($childcategories as $childcat) {
+                    echo '<li>';
+                    echo '<input type="checkbox" name="category[]" id="" value="'.$childcat->name.'">'; //Get child Category Name
+                    echo $childcat->name;
+                    echo '</li>';
+                }
+                echo "</ul>"; 
             }
-                ?>
+            ?>
     </div>
 
     <div class="form-group">
