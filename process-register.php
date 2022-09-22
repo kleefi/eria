@@ -2,27 +2,25 @@
 
 function wpbt_coba_register_user()
 {
-   //For redirect purposes
-    $register_url = network_site_url( '/register-member' );
-    $homepage     = network_site_url( '/dashboard-members' );
+    //For redirect purposes
+    $register_url = network_site_url( '/daftar' );
+    $homepage     = network_site_url( '/dashboard' );
 
     $auth_nonce = $_POST['auth_nonce'];
     validate_nonce( $auth_nonce, $homepage );
 
-//     $company_name         = sanitize_text_field( trim( $_POST['company_name'] ) );
     $username         = sanitize_text_field( trim( $_POST['username'] ) );
     $email            = sanitize_text_field( trim( $_POST['email'] ) );
     $password         = sanitize_text_field( trim( $_POST['password'] ) );
     $password_confirm = sanitize_text_field( trim( $_POST['password_confirm'] ) );
 
-    $errors = validate_registration( $company_name, $username, $email, $password, $password_confirm );
+    $errors = validate_registration( $username, $email, $password, $password_confirm );
 
     if( count( $errors ) > 0 )
     {
         //If there are errors we will set some session values
         //so we can show the user what went wrong and also keep his old values filled in the form
         $_SESSION["errors"]   = $errors;
-//         $_SESSION["company_name"] = $company_name;
         $_SESSION["username"] = $username;
         $_SESSION["email"]    = $email;
         wp_safe_redirect( $register_url );
@@ -30,7 +28,6 @@ function wpbt_coba_register_user()
     }
 
     $user_data = array(
-//         'company_name' =>  $company_name,
         'user_login' =>  $username,
         'user_email' =>  $email,
         'user_pass'  =>  $password
