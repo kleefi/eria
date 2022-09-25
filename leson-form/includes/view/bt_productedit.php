@@ -37,118 +37,140 @@ function wpbt_coba_productedit()
 
         // if(isset($submit)){
 
-            global $user_ID;
 
-            if (isset ($_POST['post_title'])) { 
-                $postTitle =  $_POST['post_title']; 
-            } else { 
-                echo 'Please enter a title';
-            }
-            if (isset ($_POST['long_description'])) { 
-                $postlong = $_POST['long_description'];
-                $trimmed_content = wp_trim_words( $postlong, 500, NULL );
-                echo $trimmed_content;
-            } else { 
-                echo 'Please enter the content'; 
-            }
-            
             $new_post = array(
-                'post_title' => $postTitle,
-                'post_content' => $postlong,
+                'ID' => $_GET['id'],
+                'post_title' => $_POST['post_title'],
                 'post_status' => 'pending',
                 'post_date' => date('Y-m-d H:i:s'),
                 'post_author' => $user_ID,
-                'post_type' => 'job',
-                'post_category' => array(0)
+                'post_type' => 'job'
             );
 
-            $post_id = wp_insert_post($new_post);
+            $post_id = wp_update_post($new_post);
 
             // add category
             // $category_id = array(1,4);
-            $category_id = $_POST['category'];
+            $category_id = $_POST['categori'];
             $taxonomy = 'categori';
             wp_set_object_terms( $post_id, $category_id, $taxonomy );
 
-            // add upload image
-            if(isset($_FILES['uploadfile']['name'])){
-                if ( ! function_exists( 'wp_handle_upload' ) ) {
-                    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+            // if no image changing, get value to store meta_key => gambar_utama
+            if(empty($_FILES['uploadfile']['name'])){
+                add_post_meta($post_id, "gambar_utama", $_POST['gambar_utama'], true);
+            }else{
+                if(isset($_FILES['uploadfile']['name'])){
+                    if ( ! function_exists( 'wp_handle_upload' ) ) {
+                        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+                    }
+                    $uploadedfile = $_FILES['uploadfile'];
+                    $upload_overrides = array( 'test_form' => false );
+                    $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
+                    add_post_meta($post_id, "gambar_utama", $movefile['url'], true);
                 }
-                $uploadedfile = $_FILES['uploadfile'];
-                $upload_overrides = array( 'test_form' => false );
-                $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                add_post_meta($post_id, "gambar_utama", $movefile['url'], true);
-                // add_post_meta($post_id, "short_description", $movefile['url'], true);
             }
-            if(isset($_FILES['poto_1']['name'])){
-                if ( ! function_exists( 'wp_handle_upload' ) ) {
-                    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+            if(empty($_FILES['poto_1']['name'])){
+                add_post_meta($post_id, "poto_1", $_POST['poto_1'], true);
+            }else{
+                if(isset($_FILES['poto_1']['name'])){
+                    if ( ! function_exists( 'wp_handle_upload' ) ) {
+                        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+                    }
+                    $uploadedfile = $_FILES['poto_1'];
+                    $upload_overrides = array( 'test_form' => false );
+                    $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
+                    add_post_meta($post_id, "poto_1", $movefile['url'], true);
                 }
-                $uploadedfile = $_FILES['poto_1'];
-                $upload_overrides = array( 'test_form' => false );
-                $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                add_post_meta($post_id, "poto_1", $movefile['url'], true);
             }
-            if(isset($_FILES['poto_2']['name'])){
-                if ( ! function_exists( 'wp_handle_upload' ) ) {
-                    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+            if(empty($_FILES['poto_2']['name'])){
+                add_post_meta($post_id, "poto_2", $_POST['poto_2'], true);
+            }else{
+                if(isset($_FILES['poto_2']['name'])){
+                    if ( ! function_exists( 'wp_handle_upload' ) ) {
+                        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+                    }
+                    $uploadedfile = $_FILES['poto_2'];
+                    $upload_overrides = array( 'test_form' => false );
+                    $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
+                    add_post_meta($post_id, "poto_2", $movefile['url'], true);
                 }
-                $uploadedfile = $_FILES['poto_2'];
-                $upload_overrides = array( 'test_form' => false );
-                $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                add_post_meta($post_id, "poto_2", $movefile['url'], true);
             }
-            if(isset($_FILES['poto_3']['name'])){
-                if ( ! function_exists( 'wp_handle_upload' ) ) {
-                    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+            if(empty($_FILES['poto_3']['name'])){
+                add_post_meta($post_id, "poto_3", $_POST['poto_3'], true);
+            }else{
+                if(isset($_FILES['poto_3']['name'])){
+                    if ( ! function_exists( 'wp_handle_upload' ) ) {
+                        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+                    }
+                    $uploadedfile = $_FILES['poto_3'];
+                    $upload_overrides = array( 'test_form' => false );
+                    $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
+                    add_post_meta($post_id, "poto_3", $movefile['url'], true);
                 }
-                $uploadedfile = $_FILES['poto_3'];
-                $upload_overrides = array( 'test_form' => false );
-                $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                add_post_meta($post_id, "poto_3", $movefile['url'], true);
             }
-            if(isset($_FILES['poto_4']['name'])){
-                if ( ! function_exists( 'wp_handle_upload' ) ) {
-                    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+            if(empty($_FILES['poto_4']['name'])){
+                add_post_meta($post_id, "poto_4", $_POST['poto_4'], true);
+            }else{
+                if(isset($_FILES['poto_4']['name'])){
+                    if ( ! function_exists( 'wp_handle_upload' ) ) {
+                        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+                    }
+                    $uploadedfile = $_FILES['poto_4'];
+                    $upload_overrides = array( 'test_form' => false );
+                    $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
+                    add_post_meta($post_id, "poto_4", $movefile['url'], true);
                 }
-                $uploadedfile = $_FILES['poto_4'];
-                $upload_overrides = array( 'test_form' => false );
-                $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                add_post_meta($post_id, "poto_4", $movefile['url'], true);
             }
-            if(isset($_FILES['poto_5']['name'])){
-                if ( ! function_exists( 'wp_handle_upload' ) ) {
-                    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+            if(empty($_FILES['poto_5']['name'])){
+                add_post_meta($post_id, "poto_5", $_POST['poto_5'], true);
+            }else{
+                if(isset($_FILES['poto_5']['name'])){
+                    if ( ! function_exists( 'wp_handle_upload' ) ) {
+                        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+                    }
+                    $uploadedfile = $_FILES['poto_5'];
+                    $upload_overrides = array( 'test_form' => false );
+                    $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
+                    add_post_meta($post_id, "poto_5", $movefile['url'], true);
                 }
-                $uploadedfile = $_FILES['poto_5'];
-                $upload_overrides = array( 'test_form' => false );
-                $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                add_post_meta($post_id, "poto_5", $movefile['url'], true);
             }
-            if(isset($_FILES['poto_additional']['name'])){
-                if ( ! function_exists( 'wp_handle_upload' ) ) {
-                    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+            if(empty($_FILES['poto_additional']['name'])){
+                add_post_meta($post_id, "poto_additional", $_POST['poto_additional'], true);
+            }else{
+                if(isset($_FILES['poto_additional']['name'])){
+                    if ( ! function_exists( 'wp_handle_upload' ) ) {
+                        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+                    }
+                    $uploadedfile = $_FILES['poto_additional'];
+                    $upload_overrides = array( 'test_form' => false );
+                    $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
+                    add_post_meta($post_id, "poto_additional", $movefile['url'], true);
                 }
-                $uploadedfile = $_FILES['poto_additional'];
-                $upload_overrides = array( 'test_form' => false );
-                $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                add_post_meta($post_id, "poto_additional", $movefile['url'], true);
+            }
+            if(empty($_FILES['poto_additional']['name'])){
+                add_post_meta($post_id, "poto_additional", $_POST['poto_additional'], true);
+            }else{
+                if(isset($_FILES['poto_additional']['name'])){
+                    if ( ! function_exists( 'wp_handle_upload' ) ) {
+                        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+                    }
+                    $uploadedfile = $_FILES['poto_additional'];
+                    $upload_overrides = array( 'test_form' => false );
+                    $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
+                    add_post_meta($post_id, "poto_additional", $movefile['url'], true);
+                }
             }
 
-            if (isset ($_POST['short_description'])) { 
-                $short_description = $_POST['short_description'];
-                $trimmed_content_short_description = wp_trim_words( $short_description, 500, NULL );
-                echo $trimmed_content_short_description;
-            } else { 
-                echo 'Please enter the content'; 
-            }
-            // add_post_meta($post_id, "short_description",$_POST['short_description'], true);
+            add_post_meta($post_id, "short_description",$_POST['short_description'], true);
+            add_post_meta($post_id, "long_description",$_POST['long_description'], true);
             add_post_meta($post_id, "txtDistributionCountries", $_POST['txtDistributionCountries'], true);
             add_post_meta($post_id, "txtVideoLink", $_POST['txtVideoLink'], true);
             add_post_meta($post_id, "condition1", $_POST['condition1'], true);
             add_post_meta($post_id, "condition2", $_POST['condition2'], true);
-
+            echo "<script>
+					alert('Data saved');
+					window.location.href='/SIT/eria/dashboard-members/product-list/';
+					</script>";
             // echo "New successfully added";
 
         // }
@@ -163,25 +185,38 @@ function wpbt_coba_productedit()
         <!-- Pilih kategori -->
         <div class="sui-col-md-3">
             <div class="sui-box">
-                <div class="sui-box-header">
-                    <h2 class="sui-box-title">Category</h2>
+                <div class="sui-box-header" style="display:flex;flex-direction:column;align-items:flex-start;">
+                <h3>Active Categories</h3>
+                    <?php
+                    $category_detail=get_the_terms($_GET['id'], 'categori');//$post->ID
+                    // print_r($category_detail);
+                    foreach($category_detail as $cd){
+                        $cetak_nama = $cd->name.', ';
+                        // echo $cd->name;
+                        // echo ', ';
+                        echo $cetak_nama;
+                        rtrim($cetak_nama,", ");
+                        // echo '<input hidden type="text" name="categori[]" value='.$cd->name.'>';
+                        }
+                    ?>
                 </div>
                 <div class="sui-box-body">
+                <h2 class="sui-box-title" style="font-size: 20px; padding-bottom: 10px; border-bottom: 1px solid #888; margin-bottom: 10px;">Category</h2>
                     <?php
                         $Parentcatargs = array(
-                            // 'orderby' => 'name',
-                            // 'order' => 'ASC',
-                            // 'use_desc_for_title' => 1,
-                            // 'hide_empty' => 0,
-                            // 'parent' => 0
+                            'orderby' => 'name',
+                            'order' => 'ASC',
+                            'use_desc_for_title' => 1,
+                            'hide_empty' => 0,
+                            'parent' => '0',
                             'type'                     => 'job',
                             'child_of'                 => 0,
-                            'parent'                   => '',
-                            'orderby'                  => 'name',
-                            'order'                    => 'ASC',
-                            'hide_empty'               => 1,
-                            'hierarchical'             => 1,
-                            'taxonomy'                 => 'categori',
+                            // 'parent'                   => '',
+                            // 'orderby'                  => 'name',
+                            // 'order'                    => 'ASC',
+                            // 'hide_empty'               => 1,
+                            // 'hierarchical'             => 1,
+                            'taxonomy'                 => 'categori'
                         );
 
                         $category = get_categories($Parentcatargs);
@@ -194,7 +229,8 @@ function wpbt_coba_productedit()
                             $childargs = array(
                                 'child_of' => $Parentcat->cat_ID,
                                 'hide_empty' => 0,
-                                'parent' => $Parentcat->cat_ID
+                                'parent' => $Parentcat->cat_ID,
+                                'taxonomy' => 'categori'
                             );
 
 
@@ -304,12 +340,16 @@ function wpbt_coba_productedit()
                     <div class="sui-box-settings-row">
                         <div class="sui-box-settings-col-2">
                             <div class="sui-form-field">
-                                
+                            <p name="ddlDistributionRegion" hidden><?php echo get_post_meta($_GET['id'],'ddlDistributionRegion', true);?></p>
                                 <label for="ddlDistributionRegion" class="sui-label">Scope of a Possible Distribution Region</label>
                                 <select name="ddlDistributionRegion" id="ddlDistributionRegion" class="sui-select" required >
                                     <option value="" disabled selected>Please choose…</option>
                                     <option value="Domestically (no international trade)" <?php if($ddlDistributionRegion == 'Domestically (no international trade)') echo 'selected'; ?>>Domestically (no international trade)</option>
-                                    <option value="Asian countries" <?php if($ddlDistributionRegion == 'Asian countries') echo 'selected'; ?>>Asian countries</option>
+                                    <option value="Asian countries" <?php 
+                                        $ddlDistributionRegion = get_post_meta($_GET['id'],'ddlDistributionRegion', true);
+                                        if($ddlDistributionRegion == 'Asian countries') echo 'selected'; 
+                                        
+                                    ?>>Asian countries</option>
                                     <option value="ASEAN countries" <?php if($ddlDistributionRegion == 'ASEAN countries') echo 'selected'; ?>>ASEAN countries</option>
                                     <option value="ASEAN+3 countries" <?php if($ddlDistributionRegion == 'ASEAN+3 countries') echo 'selected'; ?>>ASEAN+3 countries</option>
                                     <option value="East Asian countries" <?php if($ddlDistributionRegion == 'East Asian countries') echo 'selected'; ?>>East Asian countries</option>
@@ -400,39 +440,39 @@ function wpbt_coba_productedit()
                 
                 <!-- Cover Photo -->
                 <div class="sui-box-body">
-                    <div class="sui-form-field">
+                <div class="sui-form-field">
 
-                        <label class="sui-label" for="gambar_utama">Cover image</label>
+                    <label class="sui-label" for="gambar_utama">Cover Photo</label>
 
-                        <div class="sui-upload sui-has_file">
+                    <div class="sui-upload sui-file-upload sui-file-browser">
 
-                            <input 
-                                type="file" 
-                                id="gambar_utama"
-                                name="uploadfile"
-                                value="<?php echo get_post_meta($_GET['id'],'uploadfile', true);?>" 
-                            >
+                    <input type='hidden' id="file" class="form-control" name="gambar_utama" value="<?php echo get_post_meta($_GET['id'],'gambar_utama', true);?>" />
+                        <input type="file" id="gambar_utama" name="uploadfile"/>
+                        
 
-                            <div class="sui-upload-image" aria-hidden="true">
-                                <div class="sui-image-mask"></div>
-                                <div role="button" class="sui-image-preview" style="background-image: url('<?php echo get_post_meta($_GET['id'],'uploadfile', true);?>');"></div>
+                        <div class="sui-upload-image" aria-hidden="true">
+                            <div class="sui-image-mask"></div>
+                            <div role="button" class="sui-image-preview" style="background-image: url('path-to-image/filename.png');">
                             </div>
+                        </div>
 
-                            <button class="sui-upload-button">
-                                <span class="sui-icon-upload-cloud" aria-hidden="true"></span> Upload image
+                        <button type="button" class="sui-upload-button">
+                            <span class="sui-icon-upload-cloud" aria-hidden="true"></span> Upload file
+                        </button>
+
+                        <div class="sui-upload-file">
+
+                            <span>filename.png</span>
+
+                            <button aria-label="Remove file">
+                                <span class="sui-icon-close" aria-hidden="true"></span>
                             </button>
 
-                            <div class="sui-upload-file">
-
-                                <span>filename.jpg</span>
-
-                                <button class="sui-upload-button--remove" aria-label="Remove file">
-                                    <span class="sui-icon-close" aria-hidden="true"></span>
-                                </button>
-
-                            </div>
-
                         </div>
+
+                    </div>
+
+                    <span class="sui-description">Please upload a high-resolution photo (.png or .jpeg) for the cover photo of the product, service, or technology, maximum 3 MB. Best dimensions are 522 pixels (width) x 400 pixels (height).</span>
 
                     </div>
                     <div class="sui-form-field">
