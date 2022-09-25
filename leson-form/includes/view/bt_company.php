@@ -434,7 +434,11 @@ function wpbt_coba_company()
 
 
                 // echo '<script>alert("oke");</script>';
-                header("location:/dashboard-members/contact/");
+                //header("location:/dashboard-members/contact/");
+                echo "<script>
+					alert('Data saved');
+					window.location.href='/SIT/eria/dashboard-members/company/';
+					</script>";
 
             }
         ?>
