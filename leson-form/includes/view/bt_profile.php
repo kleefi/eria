@@ -23,10 +23,11 @@ function wpbt_coba_profile()
                                                 <div class="sui-box-body">
 <?php
 	$get_avatar = get_user_meta(wp_get_current_user()->ID,'avatar',true);
-	if(empty($get_avatar)){
-		echo get_avatar( $user_id, 96, $default, $alt );
+	if(!strpos($get_avatar,'http')){
+		// echo get_avatar( $user_id, 96, $default, $alt );
+        echo '<img class="gambar-utama" style="max-width:180px;" src="https://dewanstudio.biz/SIT/eria/wp-content/uploads/2022/09/default.png" alt="avatar">';
 	}else{
-		echo '<img class="gambar-utama" style="max-width:180px;" src="'.get_user_meta(wp_get_current_user()->ID,'avatar',true).'" alt="">';
+		echo '<img class="gambar-utama" style="max-width:180px;" src="'.get_user_meta(wp_get_current_user()->ID,'avatar',true).'" alt="ss">';
 	}
 ?>
 <!-- <!?php echo get_avatar( $user_id, 96, $default, $alt ); ?> -->
