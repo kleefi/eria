@@ -172,37 +172,39 @@ function wpbt_coba_productadd()
                 <div class="sui-box-body">
                     <?php
                         $Parentcatargs = array(
-                            // 'orderby' => 'name',
-                            // 'order' => 'ASC',
-                            // 'use_desc_for_title' => 1,
-                            // 'hide_empty' => 0,
-                            // 'parent' => 0
+                            'orderby' => 'name',
+                            'order' => 'ASC',
+                            'use_desc_for_title' => 1,
+                            'hide_empty' => 0,
+                            'parent' => '0',
                             'type'                     => 'job',
                             'child_of'                 => 0,
-                            'parent'                   => '',
-                            'orderby'                  => 'name',
-                            'order'                    => 'ASC',
-                            'hide_empty'               => 1,
-                            'hierarchical'             => 1,
-                            'taxonomy'                 => 'categori',
+                            // 'parent'                   => '',
+                            // 'orderby'                  => 'name',
+                            // 'order'                    => 'ASC',
+                            // 'hide_empty'               => 1,
+                            // 'hierarchical'             => 1,
+                            'taxonomy'                 => 'categori'
                         );
 
                         $category = get_categories($Parentcatargs);
-                        //print_r($category); //Return Array
+                        // print_r($category);
 
                         foreach ($category as $Parentcat) {
                             echo '<input type="radio" name="categori[]" id="" value="'.$Parentcat->name.'">';//Get Parent Category Name
                             echo $Parentcat->name;
                             echo "<br>";
                             $childargs = array(
+                                // 'type'  => 'job',
                                 'child_of' => $Parentcat->cat_ID,
                                 'hide_empty' => 0,
-                                'parent' => $Parentcat->cat_ID
+                                'parent' => $Parentcat->cat_ID,
+                                'taxonomy' => 'categori'
                             );
 
 
                             $childcategories = get_categories($childargs);
-                            //print_r($childcategories); //Return Array
+                            // print_r($childcategories); //Return Array
                             echo '<ul>';
                             foreach ($childcategories as $childcat) {
                                 echo '<li>';
