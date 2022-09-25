@@ -446,7 +446,7 @@ function wpbt_coba_productedit()
 
                     <div class="sui-upload sui-file-upload sui-file-browser">
 
-                    <input type='hidden' id="file" class="form-control" name="gambar_utama" value="<?php echo get_post_meta($_GET['id'],'gambar_utama', true);?>" />
+                    <input type='hidden' id="gambar_utama" class="form-control" name="gambar_utama" value="<?php echo get_post_meta($_GET['id'],'gambar_utama', true);?>" />
                         <input type="file" id="gambar_utama" name="uploadfile"/>
                         
 
