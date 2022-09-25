@@ -26,7 +26,7 @@ function wpbt_coba_profile()
 	if(empty($get_avatar)){
 		echo get_avatar( $user_id, 96, $default, $alt );
 	}else{
-		echo '<img class="gambar-utama" style="width:200px;" src="'.get_user_meta(wp_get_current_user()->ID,'avatar',true).'" alt="">';
+		echo '<img class="gambar-utama" style="max-width:200px;" src="'.get_user_meta(wp_get_current_user()->ID,'avatar',true).'" alt="">';
 	}
 ?>
 <!-- <!?php echo get_avatar( $user_id, 96, $default, $alt ); ?> -->
