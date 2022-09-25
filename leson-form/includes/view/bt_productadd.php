@@ -66,7 +66,7 @@ function wpbt_coba_productadd()
 
             // add category
             // $category_id = array(1,4);
-            $category_id = $_POST['category'];
+            $category_id = $_POST['categori'];
             $taxonomy = 'categori';
             wp_set_object_terms( $post_id, $category_id, $taxonomy );
 
