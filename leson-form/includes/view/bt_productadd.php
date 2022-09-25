@@ -47,7 +47,7 @@ function wpbt_coba_productadd()
             if (isset ($_POST['long_description'])) { 
                 $postlong = $_POST['long_description'];
                 $trimmed_content = wp_trim_words( $postlong, 500, NULL );
-                echo $trimmed_content;
+                //echo $trimmed_content;
             } else { 
                 echo 'Please enter the content'; 
             }
@@ -139,7 +139,7 @@ function wpbt_coba_productadd()
             if (isset ($_POST['short_description'])) { 
                 $short_description = $_POST['short_description'];
                 $trimmed_content_short_description = wp_trim_words( $short_description, 500, NULL );
-                echo $trimmed_content_short_description;
+                // echo $trimmed_content_short_description;
             } else { 
                 echo 'Please enter the content'; 
             }
@@ -148,9 +148,12 @@ function wpbt_coba_productadd()
             add_post_meta($post_id, "txtVideoLink", $_POST['txtVideoLink'], true);
             add_post_meta($post_id, "condition1", $_POST['condition1'], true);
             add_post_meta($post_id, "condition2", $_POST['condition2'], true);
-
+			echo "<script>
+					alert('Data saved');
+					window.location.href='/SIT/eria/dashboard-members/product-list/';
+					</script>";
             // echo "New successfully added";
-
+			
         // }
     }
 
