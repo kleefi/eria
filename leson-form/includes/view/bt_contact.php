@@ -160,10 +160,11 @@ function wpbt_coba_contact()
                     update_user_meta( $user_id, 'second_contact_title', $_POST['second_contact_title'] );
                     update_user_meta( $user_id, 'second_contact_name', $_POST['second_contact_name'] );
                     update_user_meta( $user_id, 'second_contact_email', $_POST['second_contact_email'] );
-
-                    // echo '<script>alert("oke");</script>';
                     //header("location:/dashboard-members/contact/");
-                    header("location:dashboard-members/contact/");
+                    echo "<script>
+					alert('Data saved');
+					window.location.href='/SIT/eria/dashboard-members/contact/';
+					</script>";
 
             }
         ?>
