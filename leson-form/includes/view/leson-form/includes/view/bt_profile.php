@@ -21,9 +21,16 @@ function wpbt_coba_profile()
                                                     <h2 class="sui-box-title">Update Foto Profile</h2>
                                                 </div>
                                                 <div class="sui-box-body">
-
-<?php echo get_avatar( $user_id, 96, $default, $alt ); ?>
-<img class="gambar-utama" style="width:200px;" src="<?php echo get_user_meta(wp_get_current_user()->ID,'avatar',true);?>" alt="">
+<?php
+	$get_avatar = get_user_meta(wp_get_current_user()->ID,'avatar',true);
+	if(empty($get_avatar)){
+		echo get_avatar( $user_id, 96, $default, $alt );
+	}else{
+		echo '<img class="gambar-utama" style="width:200px;" src="'.get_user_meta(wp_get_current_user()->ID,'avatar',true).'" alt="">';
+	}
+?>
+<!-- <!?php echo get_avatar( $user_id, 96, $default, $alt ); ?> -->
+<!-- <img class="gambar-utama" style="width:200px;" src="<!?php echo get_user_meta(wp_get_current_user()->ID,'avatar',true);?>" alt=""> -->
 <input type='hidden' id="file" class="form-control" name="avatar" value="<?php echo get_user_meta(wp_get_current_user()->ID,'avatar',true);?>" />
 <input type='file' id="file" class="form-control" name="uploadfile" />
 <input type="submit" name="sub" value="Update Image" class="sui-button sui-button-lg">
@@ -65,7 +72,11 @@ function wpbt_coba_profile()
         update_user_meta($user_id, "avatar", $movefile['url'] );
 
         if ( $movefile && ! isset( $movefile['error'] ) ) {
-            echo '<a target="_blank" href="'.$movefile['url'].'">view</a>';
+            //echo '<a target="_blank" href="'.$movefile['url'].'">view</a>';
+            echo "<script>
+				alert('Data saved');
+				window.location.href='/SIT/eria/dashboard-members/profile/';
+			</script>";
         } else {
             echo $movefile['error'];
         }
@@ -420,14 +431,18 @@ function wpbt_coba_profile()
                                             update_user_meta($user_id, "photo_profile", $movefile['url'] );
                                         
                                             if ( $movefile && ! isset( $movefile['error'] ) ) {
-                                                echo '<a href="'.$movefile['url'].'">view</a>';
+                                                //echo '<a href="'.$movefile['url'].'">view</a>';
                                             } else {
                                                 echo $movefile['error'];
                                             }
                                             // die;
                                         }
                                         // echo '<script>alert("oke");</script>';
-                                        header("location:/dashboard-members/profile/");
+                                        //header("location:/dashboard-members/profile/");
+										echo "<script>
+												alert('Data saved');
+												window.location.href='/SIT/eria/dashboard-members/profile/';
+										</script>";
 
                                     }
                                 ?>
