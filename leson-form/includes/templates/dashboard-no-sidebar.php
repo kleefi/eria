@@ -90,8 +90,14 @@
                     <?php 
                         if ( is_user_logged_in() ) {
                             $current_user = wp_get_current_user();
-                            if ( ($current_user instanceof WP_User) ) {
-                                echo get_avatar( $current_user->ID, 37 );
+                            $get_avatar = get_user_meta(wp_get_current_user()->ID,'avatar',true);
+                            if(empty($get_avatar)){
+                                if ( ($current_user instanceof WP_User) ) {
+                                    echo get_avatar( $current_user->ID, 37 );
+                                }
+                            }
+                            else{
+                                echo '<img class="gambar-utama" style="max-width:180px;" src="'.get_user_meta(wp_get_current_user()->ID,'avatar',true).'" alt="">';
                             }
                         }
                     ?>
@@ -199,8 +205,14 @@
                                     <?php 
                                         if ( is_user_logged_in() ) {
                                             $current_user = wp_get_current_user();
-                                            if ( ($current_user instanceof WP_User) ) {
-                                                echo get_avatar( $current_user->ID, 24 );
+                                            $get_avatar = get_user_meta(wp_get_current_user()->ID,'avatar',true);
+                                            if(empty($get_avatar)){
+                                                if ( ($current_user instanceof WP_User) ) {
+                                                    echo get_avatar( $current_user->ID, 37 );
+                                                }
+                                            }
+                                            else{
+                                                echo '<img class="gambar-utama" style="max-width:100%;border-radius:100px;" src="'.get_user_meta(wp_get_current_user()->ID,'avatar',true).'" alt="">';
                                             }
                                         }
                                     ?>
@@ -212,8 +224,14 @@
                                                 <?php 
                                                     if ( is_user_logged_in() ) {
                                                         $current_user = wp_get_current_user();
-                                                        if ( ($current_user instanceof WP_User) ) {
-                                                            echo get_avatar( $current_user->ID, 37 );
+                                                        $get_avatar = get_user_meta(wp_get_current_user()->ID,'avatar',true);
+                                                        if(empty($get_avatar)){
+                                                            if ( ($current_user instanceof WP_User) ) {
+                                                                echo get_avatar( $current_user->ID, 37 );
+                                                            }
+                                                        }
+                                                        else{
+                                                            echo '<img class="gambar-utama" style="max-width:180px;" src="'.get_user_meta(wp_get_current_user()->ID,'avatar',true).'" alt="">';
                                                         }
                                                     }
                                                 ?>
@@ -249,8 +267,14 @@
                                             <?php 
                                                 if ( is_user_logged_in() ) {
                                                     $current_user = wp_get_current_user();
-                                                    if ( ($current_user instanceof WP_User) ) {
-                                                        echo get_avatar( $current_user->ID, 37 );
+                                                    $get_avatar = get_user_meta(wp_get_current_user()->ID,'avatar',true);
+                                                    if(empty($get_avatar)){
+                                                        if ( ($current_user instanceof WP_User) ) {
+                                                            echo get_avatar( $current_user->ID, 37 );
+                                                        }
+                                                    }
+                                                    else{
+                                                        echo '<img class="gambar-utama" style="max-width:180px;" src="'.get_user_meta(wp_get_current_user()->ID,'avatar',true).'" alt="">';
                                                     }
                                                 }
                                             ?>
