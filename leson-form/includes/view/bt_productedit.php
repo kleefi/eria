@@ -172,19 +172,20 @@ function wpbt_coba_productedit()
         <!-- Pilih kategori -->
         <div class="sui-col-md-3">
             <div class="sui-box">
-                <div class="sui-box-header" style="display:flex;flex-direction:column;align-items:flex-start;">
+                <div class="sui-box-header" style="display: inline-block;">
                 <h3>Active Categories</h3>
                     <?php
                     $category_detail=get_the_terms($_GET['id'], 'categori');//$post->ID
                     // print_r($category_detail);
+                    $myArray = array();
                     foreach($category_detail as $cd){
-                        $cetak_nama = $cd->name.', ';
-                        // echo $cd->name;
-                        // echo ', ';
-                        echo $cetak_nama;
-                        rtrim($cetak_nama,", ");
+                        $myArray[] = '<span>'.ucfirst($cd->name).'</span>';
+                        // $cetak_nama = $cd->name;
+                        // echo $cetak_nama;
+                        // rtrim($cetak_nama,", ");
                         // echo '<input hidden type="text" name="categori[]" value='.$cd->name.'>';
                         }
+                        echo implode( ', ', $myArray );
                     ?>
                 </div>
                 <div class="sui-box-body">
