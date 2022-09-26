@@ -201,51 +201,59 @@ function wpbt_coba_productedit()
                     ?>
                 </div>
                 <div class="sui-box-body">
-                <h2 class="sui-box-title" style="font-size: 20px; padding-bottom: 10px; border-bottom: 1px solid #888; margin-bottom: 10px;">Category</h2>
-                    <?php
-                        $Parentcatargs = array(
-                            'orderby' => 'name',
-                            'order' => 'ASC',
-                            'use_desc_for_title' => 1,
-                            'hide_empty' => 0,
-                            'parent' => '0',
-                            'type'                     => 'job',
-                            'child_of'                 => 0,
-                            // 'parent'                   => '',
-                            // 'orderby'                  => 'name',
-                            // 'order'                    => 'ASC',
-                            // 'hide_empty'               => 1,
-                            // 'hierarchical'             => 1,
-                            'taxonomy'                 => 'categori'
-                        );
-
-                        $category = get_categories($Parentcatargs);
-                        //print_r($category); //Return Array
-
-                        foreach ($category as $Parentcat) {
-                            echo '<input type="radio" name="categori[]" id="" value="'.$Parentcat->name.'">';//Get Parent Category Name
-                            echo $Parentcat->name;
-                            echo "<br>";
-                            $childargs = array(
-                                'child_of' => $Parentcat->cat_ID,
+                    <h2 class="sui-box-title" style="font-size: 20px; padding-bottom: 10px; border-bottom: 1px solid #888; margin-bottom: 10px;">Category</h2>
+                    <div class="container-checkbox">
+                        <?php
+                            $Parentcatargs = array(
+                                'orderby' => 'name',
+                                'order' => 'ASC',
+                                'use_desc_for_title' => 1,
                                 'hide_empty' => 0,
-                                'parent' => $Parentcat->cat_ID,
-                                'taxonomy' => 'categori'
+                                'parent' => '0',
+                                'type'                     => 'job',
+                                'child_of'                 => 0,
+                                // 'parent'                   => '',
+                                // 'orderby'                  => 'name',
+                                // 'order'                    => 'ASC',
+                                // 'hide_empty'               => 1,
+                                // 'hierarchical'             => 1,
+                                'taxonomy'                 => 'categori'
                             );
 
+                            $category = get_categories($Parentcatargs);
+                            //print_r($category); //Return Array
 
-                            $childcategories = get_categories($childargs);
-                            //print_r($childcategories); //Return Array
-                            echo '<ul>';
-                            foreach ($childcategories as $childcat) {
-                                echo '<li>';
-                                echo '<input type="checkbox" name="categori[]" id="" value="'.$childcat->name.'">'; //Get child Category Name
-                                echo $childcat->name;
-                                echo '</li>';
+                            foreach ($category as $Parentcat) {
+                                // echo '<input type="radio" name="categori[]" id="" value="'.$Parentcat->name.'">';
+                                //Get Parent Category Name
+                                echo '<input type="checkbox" name="categori[]" id="option" value="'.$Parentcat->name.'" class="c-option">'; 
+                                echo "<label for='option'>".$Parentcat->name."</label>";
+                                //Get child Category Name
+                                // echo $Parentcat->name;
+                                // echo "<br>";
+                                $childargs = array(
+                                    'child_of' => $Parentcat->cat_ID,
+                                    'hide_empty' => 0,
+                                    'parent' => $Parentcat->cat_ID,
+                                    'taxonomy' => 'categori'
+                                );
+
+
+                                $childcategories = get_categories($childargs);
+                                //print_r($childcategories); //Return Array
+                                echo '<ul style="padding-left: 25px;">';
+                                foreach ($childcategories as $childcat) {
+                                    echo '<li>';
+                                    echo '<label>';
+                                    echo '<input type="checkbox" name="categori[]" id="" value="'.$childcat->name.'">'.$childcat->name.''; //Get child Category Name
+                                    // echo $childcat->name;
+                                    echo '</label>';
+                                    echo '</li>';
+                                }
+                                echo "</ul>";
                             }
-                            echo "</ul>"; 
-                        }
-                    ?>
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
