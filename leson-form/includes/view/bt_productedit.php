@@ -457,7 +457,7 @@ function wpbt_coba_productedit()
 
                             <div class="sui-upload-file">
 
-                                <span>filename.png</span>
+                                <span><?php echo get_post_meta($_GET['id'],'gambar_utama', true);?></span>
 
                                 <button type="button" aria-label="Remove file">
                                     <span class="sui-icon-close" aria-hidden="true"></span>
@@ -495,7 +495,7 @@ function wpbt_coba_productedit()
 
                             <div class="sui-upload-file">
 
-                                <span>filename.png</span>
+                                <span><?php echo get_post_meta($_GET['id'],'poto_1', true);?></span>
 
                                 <button type="button" aria-label="Remove file">
                                     <span class="sui-icon-close" aria-hidden="true"></span>
@@ -533,7 +533,7 @@ function wpbt_coba_productedit()
 
                             <div class="sui-upload-file">
 
-                                <span>filename.png</span>
+                                <span><?php echo get_post_meta($_GET['id'],'poto_2', true);?></span>
 
                                 <button type="button" aria-label="Remove file">
                                     <span class="sui-icon-close" aria-hidden="true"></span>
@@ -571,7 +571,7 @@ function wpbt_coba_productedit()
 
                             <div class="sui-upload-file">
 
-                                <span>filename.png</span>
+                                <span><?php echo get_post_meta($_GET['id'],'poto_3', true);?></span>
 
                                 <button type="button" aria-label="Remove file">
                                     <span class="sui-icon-close" aria-hidden="true"></span>
@@ -609,7 +609,7 @@ function wpbt_coba_productedit()
 
                             <div class="sui-upload-file">
 
-                                <span>filename.png</span>
+                                <span><?php echo get_post_meta($_GET['id'],'poto_4', true);?></span>
 
                                 <button type="button" aria-label="Remove file">
                                     <span class="sui-icon-close" aria-hidden="true"></span>
@@ -647,7 +647,7 @@ function wpbt_coba_productedit()
 
                             <div class="sui-upload-file">
 
-                                <span>filename.png</span>
+                                <span><?php echo get_post_meta($_GET['id'],'poto_5', true);?></span>
 
                                 <button type="button" aria-label="Remove file">
                                     <span class="sui-icon-close" aria-hidden="true"></span>
