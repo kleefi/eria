@@ -147,19 +147,6 @@ function wpbt_coba_productedit()
                     update_post_meta($post_id, "poto_additional", $movefile['url']);
                 }
             }
-            if(empty($_FILES['poto_additional']['name'])){
-                update_post_meta($post_id, "poto_additional", $_POST['poto_additional']);
-            }else{
-                if(isset($_FILES['poto_additional']['name'])){
-                    if ( ! function_exists( 'wp_handle_upload' ) ) {
-                        require_once( ABSPATH . 'wp-admin/includes/file.php' );
-                    }
-                    $uploadedfile = $_FILES['poto_additional'];
-                    $upload_overrides = array( 'test_form' => false );
-                    $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                    update_post_meta($post_id, "poto_additional", $movefile['url']);
-                }
-            }
 
             update_post_meta($post_id, "short_description",$_POST['short_description'], true);
             update_post_meta($post_id, "long_description",$_POST['long_description'], true);
@@ -448,59 +435,30 @@ function wpbt_coba_productedit()
                 
                 <!-- Cover Photo -->
                 <div class="sui-box-body">
-                <div class="sui-form-field">
-
-                    <label class="sui-label" for="gambar_utama">Cover Photo</label>
-
-                    <div class="sui-upload sui-file-upload sui-file-browser">
-
-                    <input type='hidden' id="gambar_utama" class="form-control" name="gambar_utama" value="<?php echo get_post_meta($_GET['id'],'gambar_utama', true);?>" />
-                        <input type="file" id="gambar_utama" name="uploadfile"/>
-                        
-
-                        <div class="sui-upload-image" aria-hidden="true">
-                            <div class="sui-image-mask"></div>
-                            <div role="button" class="sui-image-preview" style="background-image: url('path-to-image/filename.png');">
-                            </div>
-                        </div>
-
-                        <button type="button" class="sui-upload-button">
-                            <span class="sui-icon-upload-cloud" aria-hidden="true"></span> Upload file
-                        </button>
-
-                        <div class="sui-upload-file">
-
-                            <span>filename.png</span>
-
-                            <button aria-label="Remove file">
-                                <span class="sui-icon-close" aria-hidden="true"></span>
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                    <span class="sui-description">Please upload a high-resolution photo (.png or .jpeg) for the cover photo of the product, service, or technology, maximum 3 MB. Best dimensions are 522 pixels (width) x 400 pixels (height).</span>
-
-                    </div>
                     <div class="sui-form-field">
 
-                        <label class="sui-label">Field label</label>
+                        <label class="sui-label" for="gambar_utama">Cover Photo</label>
 
-                        <div class="sui-upload sui-has_file">
+                        <div class="sui-upload sui-file-upload sui-file-browser">
+                            <input type='hidden' id="gambar_utama" class="form-control" name="gambar_utama" value="<?php echo get_post_meta($_GET['id'],'gambar_utama', true);?>" />
+                            <input type="file" id="gambar_utama" name="uploadfile"/>
 
-                            <input type="file" value="<?php echo get_post_meta($_GET['id'],'poto_1', true);?>" readonly="readonly" />
 
-                            <button class="sui-upload-button">
-                                <span class="sui-icon-upload-cloud" aria-hidden="true"></span>
-                                Upload file
+                            <div class="sui-upload-image" aria-hidden="true">
+                            <div class="sui-image-mask" style=" background: url(<?php echo get_post_meta($_GET['id'],'gambar_utama', true);?>); background-size: cover; "></div>
+                            <div role="button" class="sui-image-preview" style="background-image: url('path-to-image/filename.png');">
+                                </div>
+                            </div>
+
+                            <button type="button" class="sui-upload-button">
+                                <span class="sui-icon-upload-cloud" aria-hidden="true"></span> Upload file
                             </button>
 
                             <div class="sui-upload-file">
 
-                                <span>file-name.txt</span>
+                                <span>filename.png</span>
 
-                                <button aria-label="Remove file">
+                                <button type="button" aria-label="Remove file">
                                     <span class="sui-icon-close" aria-hidden="true"></span>
                                 </button>
 
@@ -508,11 +466,7 @@ function wpbt_coba_productedit()
 
                         </div>
 
-                        <span class="sui-description">Here goes field description.</span>
-
-                        <div class="sui-notice sui-notice-error" style="margin-top: 5px; display: none;">
-                            <p>Element error message.</p>
-                        </div>
+                        <span class="sui-description">Please upload another high-resolution photo (.png or .jpeg) of the product, service, or technology, if any, maximum 3MB. Best dimensions are 522 pixels (width) x 400 pixels (height).</span>
 
                     </div>
                 </div>
@@ -524,14 +478,13 @@ function wpbt_coba_productedit()
                         <label class="sui-label" for="poto_1">Photo 2</label>
 
                         <div class="sui-upload sui-file-upload sui-file-browser">
+                            <input type='hidden' id="poto_1" class="form-control" name="poto_1" value="<?php echo get_post_meta($_GET['id'],'poto_1', true);?>" />
+                            <input type="file" id="poto_1" name="poto_1"/>
 
-                            <input id="poto_1" type="file" value="" name="poto_1" />
 
                             <div class="sui-upload-image" aria-hidden="true">
-                                <div class="sui-image-mask"></div>
-                                <div role="button"
-                                    class="sui-image-preview"
-                                    style="background-image: url('<?php echo get_post_meta($_GET['id'],'poto_1', true);?>');">
+                            <div class="sui-image-mask" style=" background: url(<?php echo get_post_meta($_GET['id'],'poto_1', true);?>); background-size: cover; "></div>
+                            <div role="button" class="sui-image-preview" style="background-image: url('path-to-image/filename.png');">
                                 </div>
                             </div>
 
@@ -563,19 +516,13 @@ function wpbt_coba_productedit()
                         <label class="sui-label" for="poto_2">Photo 3</label>
 
                         <div class="sui-upload sui-file-upload sui-file-browser">
+                            <input type='hidden' id="poto_2" class="form-control" name="poto_2" value="<?php echo get_post_meta($_GET['id'],'poto_2', true);?>" />
+                            <input type="file" id="poto_2" name="poto_2"/>
 
-                            <input
-                                id="poto_2"
-                                type="file"
-                                value=""
-                                name="poto_2"
-                            />
 
                             <div class="sui-upload-image" aria-hidden="true">
-                                <div class="sui-image-mask"></div>
-                                <div role="button"
-                                    class="sui-image-preview"
-                                    style="background-image: url('<?php echo get_post_meta($_GET['id'],'poto_2', true);?>');">
+                            <div class="sui-image-mask" style=" background: url(<?php echo get_post_meta($_GET['id'],'poto_2', true);?>); background-size: cover; "></div>
+                            <div role="button" class="sui-image-preview" style="background-image: url('path-to-image/filename.png');">
                                 </div>
                             </div>
 
@@ -596,7 +543,7 @@ function wpbt_coba_productedit()
                         </div>
 
                         <span class="sui-description">Please upload another high-resolution photo (.png or .jpeg) of the product, service, or technology, if any, maximum 3MB. Best dimensions are 522 pixels (width) x 400 pixels (height).</span>
-                        
+
                     </div>
                 </div>
 
@@ -607,19 +554,13 @@ function wpbt_coba_productedit()
                         <label class="sui-label" for="poto_3">Photo 4</label>
 
                         <div class="sui-upload sui-file-upload sui-file-browser">
+                            <input type='hidden' id="poto_3" class="form-control" name="poto_3" value="<?php echo get_post_meta($_GET['id'],'poto_3', true);?>" />
+                            <input type="file" id="poto_3" name="poto_3"/>
 
-                            <input
-                                id="poto_3"
-                                type="file"
-                                value=""
-                                name="poto_3"
-                            />
 
                             <div class="sui-upload-image" aria-hidden="true">
-                                <div class="sui-image-mask"></div>
-                                <div role="button"
-                                    class="sui-image-preview"
-                                    style="background-image: url('<?php echo get_post_meta($_GET['id'],'poto_3', true);?>');">
+                            <div class="sui-image-mask" style=" background: url(<?php echo get_post_meta($_GET['id'],'poto_3', true);?>); background-size: cover; "></div>
+                            <div role="button" class="sui-image-preview" style="background-image: url('path-to-image/filename.png');">
                                 </div>
                             </div>
 
@@ -651,19 +592,13 @@ function wpbt_coba_productedit()
                         <label class="sui-label" for="poto_4">Photo 5</label>
 
                         <div class="sui-upload sui-file-upload sui-file-browser">
+                            <input type='hidden' id="poto_4" class="form-control" name="poto_4" value="<?php echo get_post_meta($_GET['id'],'poto_4', true);?>" />
+                            <input type="file" id="poto_4" name="poto_4"/>
 
-                            <input
-                                id="poto_4"
-                                type="file"
-                                value=""
-                                name="poto_4"
-                            />
 
                             <div class="sui-upload-image" aria-hidden="true">
-                                <div class="sui-image-mask"></div>
-                                <div role="button"
-                                    class="sui-image-preview"
-                                    style="background-image: url('<?php echo get_post_meta($_GET['id'],'poto_4', true);?>');">
+                            <div class="sui-image-mask" style=" background: url(<?php echo get_post_meta($_GET['id'],'poto_4', true);?>); background-size: cover; "></div>
+                            <div role="button" class="sui-image-preview" style="background-image: url('path-to-image/filename.png');">
                                 </div>
                             </div>
 
@@ -695,19 +630,13 @@ function wpbt_coba_productedit()
                         <label class="sui-label" for="poto_5">Photo 6</label>
 
                         <div class="sui-upload sui-file-upload sui-file-browser">
+                            <input type='hidden' id="poto_5" class="form-control" name="poto_5" value="<?php echo get_post_meta($_GET['id'],'poto_5', true);?>" />
+                            <input type="file" id="poto_5" name="poto_5"/>
 
-                            <input
-                                id="poto_5"
-                                type="file"
-                                value=""
-                                name="poto_5"
-                            />
 
                             <div class="sui-upload-image" aria-hidden="true">
-                                <div class="sui-image-mask"></div>
-                                <div role="button"
-                                    class="sui-image-preview"
-                                    style="background-image: url('<?php echo get_post_meta($_GET['id'],'poto_5', true);?>');">
+                            <div class="sui-image-mask" style=" background: url(<?php echo get_post_meta($_GET['id'],'poto_5', true);?>); background-size: cover; "></div>
+                            <div role="button" class="sui-image-preview" style="background-image: url('path-to-image/filename.png');">
                                 </div>
                             </div>
 
@@ -726,7 +655,7 @@ function wpbt_coba_productedit()
                             </div>
 
                         </div>
-                        
+
                         <span class="sui-description">Please upload another high-resolution photo (.png or .jpeg) of the product, service, or technology, if any, maximum 3MB. Best dimensions are 522 pixels (width) x 400 pixels (height).</span>
 
                     </div>
@@ -739,8 +668,8 @@ function wpbt_coba_productedit()
                         <label class="sui-label" for="poto_additional">Additional information</label>
 
                         <div class="sui-upload sui-file-upload sui-file-browser">
-
-                            <input type="file" id="poto_additional" value="" name="poto_additional"  value="<?php echo get_post_meta($_GET['id'],'poto_additional', true);?>" />
+                        <input type='hidden' id="poto_additional" class="form-control" name="poto_additional" value="<?php echo get_post_meta($_GET['id'],'poto_additional', true);?>" />
+                        <input type="file" id="poto_additional" name="poto_additional"/>
 
                             <button type="button" class="sui-upload-button">
                                 <span class="sui-icon-upload-cloud" aria-hidden="true"></span>
@@ -749,7 +678,7 @@ function wpbt_coba_productedit()
 
                             <div class="sui-upload-file">
 
-                                <span><?php echo get_post_meta($_GET['id'],'poto_2', true);?></span>
+                                <span><?php echo get_post_meta($_GET['id'],'poto_additional', true);?></span>
 
                                 <button type="button" aria-label="Remove file">
                                     <span class="sui-icon-close" aria-hidden="true"></span>
