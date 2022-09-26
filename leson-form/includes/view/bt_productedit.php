@@ -57,7 +57,7 @@ function wpbt_coba_productedit()
 
             // if no image changing, get value to store meta_key => gambar_utama
             if(empty($_FILES['uploadfile']['name'])){
-                add_post_meta($post_id, "gambar_utama", $_POST['gambar_utama'], true);
+                update_post_meta($post_id, "gambar_utama", $_POST['gambar_utama']);
             }else{
                 if(isset($_FILES['uploadfile']['name'])){
                     if ( ! function_exists( 'wp_handle_upload' ) ) {
@@ -66,11 +66,11 @@ function wpbt_coba_productedit()
                     $uploadedfile = $_FILES['uploadfile'];
                     $upload_overrides = array( 'test_form' => false );
                     $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                    add_post_meta($post_id, "gambar_utama", $movefile['url'], true);
+                    update_post_meta($post_id, "gambar_utama", $movefile['url']);
                 }
             }
             if(empty($_FILES['poto_1']['name'])){
-                add_post_meta($post_id, "poto_1", $_POST['poto_1'], true);
+                update_post_meta($post_id, "poto_1", $_POST['poto_1']);
             }else{
                 if(isset($_FILES['poto_1']['name'])){
                     if ( ! function_exists( 'wp_handle_upload' ) ) {
@@ -79,11 +79,11 @@ function wpbt_coba_productedit()
                     $uploadedfile = $_FILES['poto_1'];
                     $upload_overrides = array( 'test_form' => false );
                     $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                    add_post_meta($post_id, "poto_1", $movefile['url'], true);
+                    update_post_meta($post_id, "poto_1", $movefile['url']);
                 }
             }
             if(empty($_FILES['poto_2']['name'])){
-                add_post_meta($post_id, "poto_2", $_POST['poto_2'], true);
+                update_post_meta($post_id, "poto_2", $_POST['poto_2']);
             }else{
                 if(isset($_FILES['poto_2']['name'])){
                     if ( ! function_exists( 'wp_handle_upload' ) ) {
@@ -92,11 +92,11 @@ function wpbt_coba_productedit()
                     $uploadedfile = $_FILES['poto_2'];
                     $upload_overrides = array( 'test_form' => false );
                     $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                    add_post_meta($post_id, "poto_2", $movefile['url'], true);
+                    update_post_meta($post_id, "poto_2", $movefile['url']);
                 }
             }
             if(empty($_FILES['poto_3']['name'])){
-                add_post_meta($post_id, "poto_3", $_POST['poto_3'], true);
+                update_post_meta($post_id, "poto_3", $_POST['poto_3']);
             }else{
                 if(isset($_FILES['poto_3']['name'])){
                     if ( ! function_exists( 'wp_handle_upload' ) ) {
@@ -105,11 +105,11 @@ function wpbt_coba_productedit()
                     $uploadedfile = $_FILES['poto_3'];
                     $upload_overrides = array( 'test_form' => false );
                     $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                    add_post_meta($post_id, "poto_3", $movefile['url'], true);
+                    update_post_meta($post_id, "poto_3", $movefile['url']);
                 }
             }
             if(empty($_FILES['poto_4']['name'])){
-                add_post_meta($post_id, "poto_4", $_POST['poto_4'], true);
+                update_post_meta($post_id, "poto_4", $_POST['poto_4']);
             }else{
                 if(isset($_FILES['poto_4']['name'])){
                     if ( ! function_exists( 'wp_handle_upload' ) ) {
@@ -118,11 +118,11 @@ function wpbt_coba_productedit()
                     $uploadedfile = $_FILES['poto_4'];
                     $upload_overrides = array( 'test_form' => false );
                     $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                    add_post_meta($post_id, "poto_4", $movefile['url'], true);
+                    update_post_meta($post_id, "poto_4", $movefile['url']);
                 }
             }
             if(empty($_FILES['poto_5']['name'])){
-                add_post_meta($post_id, "poto_5", $_POST['poto_5'], true);
+                update_post_meta($post_id, "poto_5", $_POST['poto_5']);
             }else{
                 if(isset($_FILES['poto_5']['name'])){
                     if ( ! function_exists( 'wp_handle_upload' ) ) {
@@ -131,11 +131,11 @@ function wpbt_coba_productedit()
                     $uploadedfile = $_FILES['poto_5'];
                     $upload_overrides = array( 'test_form' => false );
                     $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                    add_post_meta($post_id, "poto_5", $movefile['url'], true);
+                    update_post_meta($post_id, "poto_5", $movefile['url']);
                 }
             }
             if(empty($_FILES['poto_additional']['name'])){
-                add_post_meta($post_id, "poto_additional", $_POST['poto_additional'], true);
+                update_post_meta($post_id, "poto_additional", $_POST['poto_additional']);
             }else{
                 if(isset($_FILES['poto_additional']['name'])){
                     if ( ! function_exists( 'wp_handle_upload' ) ) {
@@ -144,11 +144,11 @@ function wpbt_coba_productedit()
                     $uploadedfile = $_FILES['poto_additional'];
                     $upload_overrides = array( 'test_form' => false );
                     $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                    add_post_meta($post_id, "poto_additional", $movefile['url'], true);
+                    update_post_meta($post_id, "poto_additional", $movefile['url']);
                 }
             }
             if(empty($_FILES['poto_additional']['name'])){
-                add_post_meta($post_id, "poto_additional", $_POST['poto_additional'], true);
+                update_post_meta($post_id, "poto_additional", $_POST['poto_additional']);
             }else{
                 if(isset($_FILES['poto_additional']['name'])){
                     if ( ! function_exists( 'wp_handle_upload' ) ) {
@@ -157,16 +157,16 @@ function wpbt_coba_productedit()
                     $uploadedfile = $_FILES['poto_additional'];
                     $upload_overrides = array( 'test_form' => false );
                     $movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
-                    add_post_meta($post_id, "poto_additional", $movefile['url'], true);
+                    update_post_meta($post_id, "poto_additional", $movefile['url']);
                 }
             }
 
-            add_post_meta($post_id, "short_description",$_POST['short_description'], true);
-            add_post_meta($post_id, "long_description",$_POST['long_description'], true);
-            add_post_meta($post_id, "txtDistributionCountries", $_POST['txtDistributionCountries'], true);
-            add_post_meta($post_id, "txtVideoLink", $_POST['txtVideoLink'], true);
-            add_post_meta($post_id, "condition1", $_POST['condition1'], true);
-            add_post_meta($post_id, "condition2", $_POST['condition2'], true);
+            update_post_meta($post_id, "short_description",$_POST['short_description'], true);
+            update_post_meta($post_id, "long_description",$_POST['long_description'], true);
+            update_post_meta($post_id, "txtDistributionCountries", $_POST['txtDistributionCountries'], true);
+            update_post_meta($post_id, "txtVideoLink", $_POST['txtVideoLink'], true);
+            update_post_meta($post_id, "condition1", $_POST['condition1'], true);
+            update_post_meta($post_id, "condition2", $_POST['condition2'], true);
             echo "<script>
 					alert('Data saved');
 					window.location.href='/SIT/eria/dashboard-members/product-list/';
