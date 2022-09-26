@@ -180,10 +180,10 @@ function wpbt_coba_productedit()
                     $myArray = array();
                     foreach($category_detail as $cd){
                         $myArray[] = '<span>'.ucfirst($cd->name).'</span>';
-                        // $cetak_nama = $cd->name;
+                        $cetak_nama = $cd->name;
                         // echo $cetak_nama;
                         // rtrim($cetak_nama,", ");
-                        // echo '<input hidden type="text" name="categori[]" value='.$cd->name.'>';
+                        echo '<input hidden type="text" name="categori[]" value="'.$cetak_nama.'">';
                         }
                         echo implode( ', ', $myArray );
                     ?>
@@ -214,7 +214,7 @@ function wpbt_coba_productedit()
                             foreach ($category as $Parentcat) {
                                 // echo '<input type="radio" name="categori[]" id="" value="'.$Parentcat->name.'">';
                                 //Get Parent Category Name
-                                echo '<input type="checkbox" name="categori[]" id="option" value="'.$Parentcat->name.'" class="c-option">'; 
+                                echo '<input type="radio" name="categori[]" id="option" value="'.$Parentcat->name.'" class="c-option">'; 
                                 echo "<label for='option'>".$Parentcat->name."</label>";
                                 //Get child Category Name
                                 // echo $Parentcat->name;
