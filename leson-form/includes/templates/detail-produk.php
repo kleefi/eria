@@ -487,11 +487,13 @@ if ( ! defined( 'ABSPATH' ) ) {
                                             $content = strip_tags($content);
                                             echo substr($content, 0, 300);
                                             ?>
-                                            <a id="readmore" class="reveal-full-content" href="#" onclick="showMore()">Read more</a>
+                                            <p id="readmore" class="reveal-full-content" href="#" onclick="showMore()" style=" display: inline; color: #559ab0; cursor: pointer; ">Read more</p>
+                                            <!-- <a id="readmore" class="reveal-full-content" href="#" onclick="showMore()">Read more</a> -->
 										</div>
 										<div id="full-content" class="full-content" action-id="<?php the_ID(); ?>" style="display: none;">
 											<?php the_content(); ?>
-                                            <a id="readless" class="reveal-full-content" href="#" onclick="showLess()">Read less</a>
+                                            <!-- <a id="readless" class="reveal-full-content" href="#" onclick="showLess()">Read less</a> -->
+                                            <p id="readless" class="reveal-full-content" href="#" onclick="showLess()" style=" display: inline; color: #559ab0; cursor: pointer; ">Read less</p>
 										</div>
 										
 										<style>
