@@ -175,15 +175,15 @@ function wpbt_coba_productedit()
                 <div class="sui-box-header" style="display: inline-block;">
                 <h3>Active Categories</h3>
                     <?php
-                    $category_detail=get_the_terms($_GET['id'], 'categori');//$post->ID
-                    // print_r($category_detail);
-                    $myArray = array();
-                    foreach($category_detail as $cd){
-                        $myArray[] = '<span>'.ucfirst($cd->name).'</span>';
-                        $cetak_nama = $cd->name;
-                        // echo $cetak_nama;
-                        // rtrim($cetak_nama,", ");
-                        echo '<input hidden type="text" name="categori[]" value="'.$cetak_nama.'">';
+						$category_detail=get_the_terms($_GET['id'], 'categori');//$post->ID
+						// print_r($category_detail);
+						$myArray = array();
+						foreach($category_detail as $cd){
+							$myArray[] = '<span>'.ucfirst($cd->name).'</span>';
+							$cetak_nama = $cd->name;
+							// echo $cetak_nama;
+							// rtrim($cetak_nama,", ");
+							echo '<input hidden type="text" name="categori[]" value="'.$cetak_nama.'">';
                         }
                         echo implode( ', ', $myArray );
                     ?>
@@ -382,7 +382,8 @@ function wpbt_coba_productedit()
                                         aria-labelledby="label-condition1"
                                         name="condition1"
                                         required
-                                        value="<?php echo get_post_meta($_GET['id'],'condition1', true);?>" 
+                                        value="<?php echo get_post_meta($_GET['id'],'condition1', true);?>"
+										<?php if( 'condition1' == true ) { ?>checked="checked"<?php } ?>
                                     />
                                     <span aria-hidden="true"></span>
                                     <span id="label-condition1">
@@ -404,7 +405,8 @@ function wpbt_coba_productedit()
                                         aria-labelledby="label-condition2"
                                         name="condition2"
                                         required
-                                        value="<?php echo get_post_meta($_GET['id'],'condition2', true);?>" 
+                                        value="<?php echo get_post_meta($_GET['id'],'condition2', true);?>"
+										<?php if( 'condition2' == true ) { ?>checked="checked"<?php } ?>
                                     />
                                     <span aria-hidden="true"></span>
                                     <span id="label-condition2">
