@@ -469,8 +469,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 								<div class="fusion-text fusion-text-1">
 									<div class="pt-3 text-muted font-thin mb-0">
-										<!-- <div class="btmore"><?php the_content(); ?></div> -->
-										<?php
+										<!-- <div class="btmore"><!?php the_content(); ?></div> -->
+
+										<!-- <!?php
 										
 										function new_excerpt_more($more) {
 											global $post;
@@ -478,12 +479,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 										}
 										add_filter('excerpt_more', 'new_excerpt_more');
 
-										?>
-										<div class="excerpt-content" action-id="<?php the_ID(); ?>">
-											<?php the_excerpt(); ?>
+										?> -->
+										<div id="excerpt-content" class="excerpt-content" action-id="<?php the_ID(); ?>">
+											<!-- <!?php the_excerpt(); ?> -->
+                                            <?php 
+                                            $content = get_the_content();
+                                            $content = strip_tags($content);
+                                            echo substr($content, 0, 300);
+                                            ?>
+                                            <a id="readmore" class="reveal-full-content" href="#" onclick="showMore()">Read more</a>
 										</div>
-										<div class="full-content" action-id="<?php the_ID(); ?>" style="display: none;">
+										<div id="full-content" class="full-content" action-id="<?php the_ID(); ?>" style="display: none;">
 											<?php the_content(); ?>
+                                            <a id="readless" class="reveal-full-content" href="#" onclick="showLess()">Read less</a>
 										</div>
 										
 										<style>
@@ -991,5 +999,18 @@ add_action('wp_footer', 'bt_custom_javascript', 100 );
 	max-width: 100%;
 } */
 </style>
+<script>
+    var a = document.getElementById("excerpt-content");
+    var b = document.getElementById("full-content");
+
+    function showMore(){
+        a.style.display = "none";
+        b.style.display = "block";
+    }
+    function showLess(){
+        a.style.display = "block";
+        b.style.display = "none";
+    }
+</script>
 <?php get_footer(); ?>
 <!-- END FOOTER -->
