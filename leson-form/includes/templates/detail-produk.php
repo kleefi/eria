@@ -120,7 +120,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start">
 
 						<div class="col-md-3">
-							<div class="fusion-column-wrapper fusion-flex-justify-content-flex-start fusion-content-layout-column">
+							<div class="fusion-column-wrapper fusion-flex-justify-content-flex-start fusion-content-layout-column" style="padding: 0px 20px;">
 								<div id="search-2" class="widget widget_search" style="border-style: solid;border-color:transparent;border-width:0px;">
 									<div class="heading">
 										<h4 class="widget-title">SEARCH</h4>
@@ -335,22 +335,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 									.bt_list_categori .bt_list_categori-ul .bt_list_categori-li .bt_list_categori-link {
 										width: 100%;
 										display: block;
-										/* border-top: 2px solid #1f3163; */
-										border-bottom: 2px solid #1f3163;
+										/* border-top: 1.5px solid #1f3163; */
+										border-bottom: 1.5px solid #1f3163;
 										padding: 10px 0px;
 									}
 									.bt_list_categori .bt_list_categori-ul .bt_list_categori-li:first-child .bt_list_categori-link {
 										width: 100%;
 										display: block;
-										border-top: 2px solid #1f3163;
-										border-bottom: 2px solid #1f3163;
+										border-top: 1.5px solid #1f3163;
+										border-bottom: 1.5px solid #1f3163;
 										padding: 10px 0px;
 									}
 									.bt_list_categori .bt_list_categori-ul .bt_list_categori-li:last-child .bt_list_categori-link {
 										width: 100%;
 										display: block;
-										/* border-top: 2px solid #1f3163; */
-										border-bottom: 2px solid #1f3163;
+										/* border-top: 1.5px solid #1f3163; */
+										border-bottom: 1.5px solid #1f3163;
 										padding: 10px 0px;
 									}
 									.bt_list_categori .bt_list_categori-ul .bt_list_categori-li .bt_list_categori-link:hover {
@@ -439,19 +439,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</div>
 						
 						<div class="col-md-9">
-							<div class="fusion-column-wrapper fusion-flex-justify-content-flex-start fusion-content-layout-column">
+							<div class="fusion-column-wrapper fusion-flex-justify-content-flex-start fusion-content-layout-column" style="padding: 0px 20px;">
 
 								<div class="fusion-title title fusion-title-3 fusion-sep-none fusion-title-text fusion-title-size-one fusion-border-below-title">
 									<h1 class="title-heading-left">
 										<strong><?php echo get_the_title();?></strong>
 									</h1>
+                                    <h2><strong><?php get_post_meta( $post->ID,'country_search', true); ?></strong></h2>
 								</div>
 
 								<div class="fusion-title title fusion-title-4 fusion-sep-none fusion-title-text fusion-title-size-four fusion-border-below-title">
 
 									<h4 class="title-heading-left">
 										<?php
-											$category_detail=get_the_terms($_GET['id'], 'categori');//$post->ID
+											//$post->ID
+											$category_detail=get_the_terms($_GET['id'], 'categori',
+												array(
+													'orderby' 				=> 'name',
+													'order' 				=> 'ASC',
+													'orderby' 				=> 'name',
+													'parent' 				=> '0',
+													'child_of'  			=> 0,
+												)
+											);
+										
+										if(empty($category_detail)){
+											echo "Uncategorized";
+										}else{
 											$myArray = array();
 												foreach($category_detail as $cd){
 												$myArray[] = '<a href="'.get_category_link( $cd->term_id ).'" target="_blank">'.ucfirst($cd->name).'</a>';
@@ -461,6 +475,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 												// rtrim($cetak_nama,"");
 											}
 											echo implode( ', ', $myArray );
+											}
 										?>
 									</h4>
 								</div>
@@ -469,21 +484,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 								<div class="fusion-text fusion-text-1">
 									<div class="pt-3 text-muted font-thin mb-0">
-										<!-- <div class="btmore"><!?php the_content(); ?></div> -->
-
-										<!-- <!?php
-										
-										function new_excerpt_more($more) {
-											global $post;
-											return '... <a class="reveal-full-content"  action-id ="' . $post->ID .'" href="#">Read more</a>';
-										}
-										add_filter('excerpt_more', 'new_excerpt_more');
-
-										?> -->
+										<!-- <div class="btmore"><?php the_content(); ?></div> -->
 										<div id="excerpt-content" class="excerpt-content" action-id="<?php the_ID(); ?>">
 											<!-- <!?php the_excerpt(); ?> -->
                                             <?php 
-                                            $content = get_the_content();
+                                            $content = get_post_meta( $post->ID,'long_description', true );
                                             $content = strip_tags($content);
                                             echo substr($content, 0, 300);
                                             ?>
@@ -491,11 +496,12 @@ if ( ! defined( 'ABSPATH' ) ) {
                                             <!-- <a id="readmore" class="reveal-full-content" href="#" onclick="showMore()">Read more</a> -->
 										</div>
 										<div id="full-content" class="full-content" action-id="<?php the_ID(); ?>" style="display: none;">
-											<?php the_content(); ?>
+											<!-- <!?php the_content(); ?> -->
+                                            <?php echo get_post_meta( $post->ID,'long_description', true );?>
                                             <!-- <a id="readless" class="reveal-full-content" href="#" onclick="showLess()">Read less</a> -->
                                             <p id="readless" class="reveal-full-content" href="#" onclick="showLess()" style=" display: inline; color: #559ab0; cursor: pointer; ">Read less</p>
 										</div>
-										
+
 										<style>
 											.morecontent span {
 												display: none;
@@ -950,44 +956,18 @@ add_action('wp_footer', 'bt_add_javascript' );
 <?php
 function bt_custom_javascript() {
 	?>
-		<script type="text/javascript">
-			// your javascript code goes here
-			jQuery( document ).ready( function() {
-				// Configure/customize these variables.
-				var showChar = 100;  // How many characters are shown by default
-				var ellipsestext = "...";
-				var moretext = "Show more >";
-				var lesstext = "Show less";
-				
+		<script>
+			var a = document.getElementById("excerpt-content");
+			var b = document.getElementById("full-content");
 
-				$('.btmore').each(function() {
-					var content = $(this).html();
-			
-					if(content.length > showChar) {
-			
-						var c = content.substr(0, showChar);
-						var h = content.substr(showChar, content.length - showChar);
-			
-						var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
-			
-						$(this).html(html);
-					}
-			
-				});
-			
-				$(".morelink").click(function(){
-					if($(this).hasClass("less")) {
-						$(this).removeClass("less");
-						$(this).html(moretext);
-					} else {
-						$(this).addClass("less");
-						$(this).html(lesstext);
-					}
-					$(this).parent().prev().toggle();
-					$(this).prev().toggle();
-					return false;
-				});
-			});
+			function showMore(){
+				a.style.display = "none";
+				b.style.display = "block";
+			}
+			function showLess(){
+				a.style.display = "block";
+				b.style.display = "none";
+			}
 		</script>
 	<?php
 }
@@ -1001,18 +981,5 @@ add_action('wp_footer', 'bt_custom_javascript', 100 );
 	max-width: 100%;
 } */
 </style>
-<script>
-    var a = document.getElementById("excerpt-content");
-    var b = document.getElementById("full-content");
-
-    function showMore(){
-        a.style.display = "none";
-        b.style.display = "block";
-    }
-    function showLess(){
-        a.style.display = "block";
-        b.style.display = "none";
-    }
-</script>
 <?php get_footer(); ?>
 <!-- END FOOTER -->
