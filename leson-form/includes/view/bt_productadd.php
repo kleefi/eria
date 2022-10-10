@@ -54,7 +54,7 @@ function wpbt_coba_productadd()
             
             $new_post = array(
                 'post_title' => $postTitle,
-                'post_content' => $postlong,
+                // 'post_content' => $postlong, <- tidak perlu untuk ke konten
                 'post_status' => 'pending',
                 'post_date' => date('Y-m-d H:i:s'),
                 'post_author' => $user_ID,
@@ -145,6 +145,7 @@ function wpbt_coba_productadd()
             }
             // add_post_meta($post_id, "short_description",$_POST['short_description'], true);
             add_post_meta($post_id, "txtDistributionCountries", $_POST['txtDistributionCountries'], true);
+            add_post_meta($post_id, "country_search", get_user_meta($post->post_author,'company_country'), true);
             add_post_meta($post_id, "txtVideoLink", $_POST['txtVideoLink'], true);
             add_post_meta($post_id, "condition1", $_POST['condition1'], true);
             add_post_meta($post_id, "condition2", $_POST['condition2'], true);
@@ -205,7 +206,7 @@ function wpbt_coba_productadd()
 
                             $childcategories = get_categories($childargs);
                             // print_r($childcategories); //Return Array
-                            echo '<ul>';
+                            echo '<ul style="padding-left: 25px;">';
                             foreach ($childcategories as $childcat) {
                                 echo '<li>';
                                 echo '<input type="checkbox" name="categori[]" id="" value="'.$childcat->name.'">'; //Get child Category Name
