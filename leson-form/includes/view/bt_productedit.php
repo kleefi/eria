@@ -151,6 +151,7 @@ function wpbt_coba_productedit()
             update_post_meta($post_id, "short_description",$_POST['short_description'], true);
             update_post_meta($post_id, "long_description",$_POST['long_description'], true);
             update_post_meta($post_id, "txtDistributionCountries", $_POST['txtDistributionCountries'], true);
+            update_post_meta($post_id, "country_search", get_user_meta($post->post_author,'company_country'), true);
             update_post_meta($post_id, "txtVideoLink", $_POST['txtVideoLink'], true);
             update_post_meta($post_id, "condition1", $_POST['condition1'], true);
             update_post_meta($post_id, "condition2", $_POST['condition2'], true);
@@ -175,17 +176,61 @@ function wpbt_coba_productedit()
                 <div class="sui-box-header" style="display: inline-block;">
                 <h3>Active Categories</h3>
                     <?php
-						$category_detail=get_the_terms($_GET['id'], 'categori');//$post->ID
-						// print_r($category_detail);
-						$myArray = array();
-						foreach($category_detail as $cd){
-							$myArray[] = '<span>'.ucfirst($cd->name).'</span>';
-							$cetak_nama = $cd->name;
-							// echo $cetak_nama;
-							// rtrim($cetak_nama,", ");
-							echo '<input hidden type="text" name="categori[]" value="'.$cetak_nama.'">';
+						// $category_detail=get_the_terms($_GET['id'], 'categori');//$post->ID
+						// // print_r($category_detail);
+						// $myArray = array();
+						// foreach($category_detail as $cd){
+						// 	// $myArray[] = '<span>'.ucfirst($cd->name).'</span>';
+						// 	$cetak_nama = $cd->name;
+						// 	echo $cetak_nama;
+						// 	// rtrim($cetak_nama,", ");
+						// 	// echo '<input hidden type="text" name="categori[]" value="'.$cetak_nama.'">';
+                        // }
+                        // echo implode( ', ', $myArray );
+
+
+
+
+                        $category_detail=get_the_terms($_GET['id'], 'categori');
+                        $myArray = array();
+                        foreach($category_detail as $cd){
+                            $cetak_nama = $cd->name;
+							echo $cetak_nama;
                         }
-                        echo implode( ', ', $myArray );
+                        // $oke = implode( '', $myArray );
+                        // var_dump($oke);
+
+
+                        $Parentcatargs = array(
+                            'orderby' => 'name',
+                            'order' => 'ASC',
+                            'use_desc_for_title' => 1,
+                            'hide_empty' => 0,
+                            'parent' => '0',
+                            'type'                     => 'job',
+                            'child_of'                 => 0,
+                            'taxonomy'                 => 'categori'
+                        );
+                            $allcategory = get_categories($Parentcatargs); 
+                            foreach ($allcategory as $category) {
+                            ?>
+                            <a class="btn">
+                                <?php 
+                                    $cetak = $category->cat_name;
+                              
+                                    // if($cetak==$oke){
+                                    //     echo $category_detail.' aktif';
+                                    // }else{
+                                    //     echo $cetak.' not active';
+                                    // }
+                                ?>
+                            </a>
+                            <?php 
+                        }
+
+
+
+
                     ?>
                 </div>
                 <div class="sui-box-body">
