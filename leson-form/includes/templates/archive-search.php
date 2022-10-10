@@ -1,4 +1,4 @@
-    <?php
+<?php
     /*
     Template Name: Search Page
     */
@@ -359,10 +359,10 @@
                                         <a href="<?php echo network_site_url( '/?s=Thailand&post_type=job' ) ?>" class="bt_list_categori-link">Thailand</a>
                                     </li>
                                     <li class="bt_list_categori-li">
-                                        <a href="<?php echo network_site_url( '/?s=Philippines&post_type=job' ) ?>" class="bt_list_categori-link">Philippines</a>
+                                        <a href="<?php echo network_site_url( '/?s=Philippines&post_type=job' ) ?>" class="bt_list_categori-link">The Philippines</a>
                                     </li>
                                     <li class="bt_list_categori-li">
-                                        <a href="<?php echo network_site_url( '/?s=Vietnam&post_type=job' ) ?>" class="bt_list_categori-link">Vietnam</a>
+                                        <a href="<?php echo network_site_url( '/?s=Viet%20Nam&post_type=job' ) ?>" class="bt_list_categori-link">Viet Nam</a>
                                     </li>
                                 </ul>
                             </div>
