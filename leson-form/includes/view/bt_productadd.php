@@ -145,7 +145,7 @@ function wpbt_coba_productadd()
             }
             // add_post_meta($post_id, "short_description",$_POST['short_description'], true);
             add_post_meta($post_id, "txtDistributionCountries", $_POST['txtDistributionCountries'], true);
-            add_post_meta($post_id, "country_search", get_user_meta($post->post_author,'company_country'), true);
+            add_post_meta($post_id, "country_search", get_user_meta( wp_get_current_user()->ID, 'company_country', true ));
             add_post_meta($post_id, "txtVideoLink", $_POST['txtVideoLink'], true);
             add_post_meta($post_id, "condition1", $_POST['condition1'], true);
             add_post_meta($post_id, "condition2", $_POST['condition2'], true);
