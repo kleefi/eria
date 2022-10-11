@@ -1,8 +1,10 @@
 <?php
-    /*
-    Template Name: Search Page
-    */
-    ?>
+/*
+ * Template Name: Search Page
+ * berdarkan pencarian
+ * archive-search.php
+*/
+?>
 
     <?php
     // Do not allow directly accessing this file.
@@ -42,6 +44,11 @@
                     'compare'	=> 'LIKE'
                 ),
                 array(
+                    'key'		=> 'city_search',
+                    'value'		=> get_search_query(),
+                    'compare'	=> 'LIKE'
+                ),
+                array(
                     'key'		=> 'long_description',
                     'value'		=> get_search_query(),
                     'compare'	=> 'LIKE'
@@ -77,12 +84,18 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="fusion-fullwidth fullwidth-box fusion-builder-row-3 fusion-flex-container nonhundred-percent-fullwidth non-hundred-percent-height-scrolling" style="padding: 5% 5rem;">
-                <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start">
+        <div class="post-content">
+            
+            <div class="fusion-fullwidth fullwidth-box fusion-builder-row-3 fusion-flex-container nonhundred-percent-fullwidth non-hundred-percent-height-scrolling" style="background-color: #dcebef;background-position: center center;background-repeat: no-repeat;border-width: 0px 0px 0px 0px;border-color:#e2e2e2;border-style:solid;">
+				<style type="text/css">.fusion-body .fusion-flex-container.fusion-builder-row-3{ padding-top : 5%;margin-top : -20px;padding-right : 30px;padding-bottom : 5%;margin-bottom : 0px;padding-left : 30px;}</style>
+                <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start" style="max-width:1248px;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
 
-                    <div class="col-md-3">
-                        <div class="fusion-column-wrapper fusion-flex-justify-content-flex-start fusion-content-layout-column" style="padding: 0px 20px;">
+                    <div class="fusion-layout-column fusion_builder_column fusion-builder-column-2 fusion_builder_column_1_4 1_4 fusion-flex-column">
+                        <div class="fusion-column-wrapper fusion-flex-justify-content-flex-start fusion-content-layout-column" style="background-position: left top; background-repeat: no-repeat; background-size: cover; padding: 0px; min-height: 0px;">
+							<style type="text/css">.fusion-body .fusion-builder-column-2{width:25% !important;margin-top : 0px;margin-bottom : 20px;}.fusion-builder-column-2 > .fusion-column-wrapper {padding-top : 0px !important;padding-right : 0px !important;margin-right : 7.68%;padding-bottom : 0px !important;padding-left : 0px !important;margin-left : 7.68%;}@media only screen and (max-width:1024px) {.fusion-body .fusion-builder-column-2{width:25% !important;order : 0;}.fusion-builder-column-2 > .fusion-column-wrapper {margin-right : 7.68%;margin-left : 7.68%;}}@media only screen and (max-width:640px) {.fusion-body .fusion-builder-column-2{width:100% !important;order : 0;}.fusion-builder-column-2 > .fusion-column-wrapper {margin-right : 1.92%;margin-left : 1.92%;}}</style>
+
                             <div id="search-2" class="widget widget_search" style="border-style: solid;border-color:transparent;border-width:0px;">
                                 <div class="heading">
                                     <h4 class="widget-title">SEARCH</h4>
@@ -369,8 +382,10 @@
                         </div>
                     </div>
                     
-                    <div class="col-md-9">
-                        <div class="fusion-blog-shortcode fusion-blog-shortcode-1 fusion-blog-archive fusion-blog-layout-grid-wrapper fusion-blog-pagination" style="padding: 0px 20px;">
+                    <div class="fusion-layout-column fusion_builder_column fusion-builder-column-3 fusion_builder_column_3_4 3_4 fusion-flex-column">
+                        <div class="fusion-column-wrapper fusion-flex-justify-content-flex-start fusion-content-layout-column" style="background-position: left top; background-repeat: no-repeat; background-size: cover; padding: 0px; min-height: 0px;">
+                            <style type="text/css">.fusion-body .fusion-builder-column-3{width:75% !important;margin-top : 0px;margin-bottom : 20px;}.fusion-builder-column-3 > .fusion-column-wrapper {padding-top : 0px !important;padding-right : 0px !important;margin-right : 2.56%;padding-bottom : 0px !important;padding-left : 0px !important;margin-left : 2.56%;}@media only screen and (max-width:1024px) {.fusion-body .fusion-builder-column-3{width:75% !important;order : 0;}.fusion-builder-column-3 > .fusion-column-wrapper {margin-right : 2.56%;margin-left : 2.56%;}}@media only screen and (max-width:640px) {.fusion-body .fusion-builder-column-3{width:100% !important;order : 0;}.fusion-builder-column-3 > .fusion-column-wrapper {margin-right : 1.92%;margin-left : 1.92%;}}</style>
+
                             <style type="text/css">
                                 .fusion-blog-shortcode-1 .fusion-blog-layout-grid .fusion-post-grid{
                                     padding:10px;
@@ -392,137 +407,145 @@
                                     letter-spacing: 1px!important;
                                 }
                             </style>
-                            <div class="fusion-posts-container fusion-posts-container-pagination fusion-blog-layout-grid fusion-blog-layout-grid-3 isotope fusion-blog-equal-heights">
 
-                                <?php if( $the_query->have_posts() ): ?>
+                            <div class="fusion-separator fusion-full-width-sep" style="align-self: center;margin-left: auto;margin-right: auto;margin-top:30px;width:100%;"></div>
+                            <div class="fusion-blog-shortcode fusion-blog-shortcode-1 fusion-blog-archive fusion-blog-layout-grid-wrapper fusion-blog-pagination">
+                                <style type="text/css">.fusion-blog-shortcode-1 .fusion-blog-layout-grid .fusion-post-grid{padding:10px;}.fusion-blog-shortcode-1 .fusion-posts-container{margin-left: -10px !important; margin-right:-10px !important;}</style>
 
-                                <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                                
+                                <div class="fusion-posts-container fusion-posts-container-pagination fusion-blog-layout-grid fusion-blog-layout-grid-3 isotope fusion-blog-equal-heights">
 
-                                    <article class="fusion-post-grid post-1408 post type-post status-publish format-standard has-post-thumbnail hentry category-japan category-reduce">
-                                        <div class="fusion-post-wrapper" style="background-color:rgba(255,255,255,0);border:none;"> 
-                                            <style>
-                                                .fusion-post-wrapper img {
-                                                    height: 180px;
-                                                    object-fit: cover;
-                                                }
-                                            </style>
-                                            <?php
-                                                $gambar = get_post_meta( get_the_ID(), 'gambar_utama', true );
-                                                // $link = the_permalink();
-                                                if (empty($gambar)) {
-                                                    // echo '<a href="'.the_permalink().'" ></a>';
-                                                    echo '<img alt="'.get_the_title().'" style="width:100%;" src="https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=170667a&w=0&h=_cx7HW9R4Uc_OLLxg2PcRXno4KERpYLi5vCz-NEyhi0=">';
-                                                }else{
-                                                    // echo '<a href="'.the_permalink().'" ></a>';
-                                                    echo '<img alt="'.get_the_title().'" style="width:100%;" src="'.$gambar.'">';
-                                                    // echo '';
-                                                }
-                                            ?>
-                                            <div class="fusion-post-content-wrapper" style="padding:20px 0px 0px 0px;">
-                                                <div class="fusion-post-content post-content">
-                                                    <p class="fusion-single-line-meta">
-                                                        <span class="vcard" style="display: none;">
-                                                            <span class="fn">
-                                                                <a href="https://dewanstudio.biz/SIT/eria/author/admin-eria/" title="Posts by Admin-Eria" rel="author">Admin-Eria</a>
+                                    <?php if( $the_query->have_posts() ): ?>
+                                    <!-- if ( $the_query->have_posts() ) -->
+                                    
+                                    <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                                        <!-- while ( $the_query->have_posts() ) : $the_query->the_post() -->
+                                    
+
+                                        <article class="fusion-post-grid post-1408 post type-post status-publish format-standard has-post-thumbnail hentry category-japan category-reduce">
+                                            <div class="fusion-post-wrapper" style="background-color:rgba(255,255,255,0);border:none;"> 
+                                                <style>
+                                                    .fusion-post-wrapper img {
+                                                        height: 180px;
+                                                        object-fit: cover;
+                                                    }
+                                                </style>
+                                                <?php
+                                                    $gambar = get_post_meta( get_the_ID(), 'gambar_utama', true );
+                                                    // $link = the_permalink();
+                                                    if (empty($gambar)) {
+                                                        // echo '<a href="'.the_permalink().'" ></a>';
+                                                        echo '<img alt="'.get_the_title().'" style="width:100%;" src="https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=170667a&w=0&h=_cx7HW9R4Uc_OLLxg2PcRXno4KERpYLi5vCz-NEyhi0=">';
+                                                    }else{
+                                                        // echo '<a href="'.the_permalink().'" ></a>';
+                                                        echo '<img alt="'.get_the_title().'" style="width:100%;" src="'.$gambar.'">';
+                                                        // echo '';
+                                                    }
+                                                ?>
+                                                <div class="fusion-post-content-wrapper" style="padding:20px 0px 0px 0px;">
+                                                    <div class="fusion-post-content post-content">
+                                                        <p class="fusion-single-line-meta">
+                                                            <span class="vcard" style="display: none;">
+                                                                <span class="fn">
+                                                                    <a href="https://dewanstudio.biz/SIT/eria/author/admin-eria/" title="Posts by Admin-Eria" rel="author">Admin-Eria</a>
+                                                                </span>
                                                             </span>
-                                                        </span>
-                                                        <span class="updated" style="display:none;">2022-09-01T10:20:38+07:00</span>
-                                                        <span class="updated" style="display:none;"><?php the_date();?></span>
-                                                        <p>
-                                                            <?php
-                                                                $category_detail=get_the_terms($_GET['id'], 'categori');//$post->ID
-                                                                if(empty($category_detail)){
-                                                                    echo 'Uncategorized';
-                                                                }else{
-                                                                $myArray = array();
-                                                                    foreach($category_detail as $cd){
-                                                                    $myArray[] = '<a href="'.get_category_link( $cd->term_id ).'" target="_blank">'.ucfirst($cd->name).'</a>';
-                                                                    // $cetak_nama_link = $cd->term_id.'';
-                                                                    // $cetak_nama = $cd->name.', ';
-                                                                    // echo '<a href="'.get_category_link( $cetak_nama_link ).'" target="_blank">'.$cetak_nama.'</a>';
-                                                                    // rtrim($cetak_nama,"");
+                                                            <span class="updated" style="display:none;">2022-09-01T10:20:38+07:00</span>
+                                                            <span class="updated" style="display:none;"><?php the_date();?></span>
+                                                            <p>
+                                                                <?php
+                                                                    $category_detail=get_the_terms($_GET['id'], 'categori');//$post->ID
+                                                                    if(empty($category_detail)){
+                                                                        echo 'Uncategorized';
+                                                                    }else{
+                                                                    $myArray = array();
+                                                                        foreach($category_detail as $cd){
+                                                                        $myArray[] = '<a href="'.get_category_link( $cd->term_id ).'" target="_blank">'.ucfirst($cd->name).'</a>';
+                                                                        // $cetak_nama_link = $cd->term_id.'';
+                                                                        // $cetak_nama = $cd->name.', ';
+                                                                        // echo '<a href="'.get_category_link( $cetak_nama_link ).'" target="_blank">'.$cetak_nama.'</a>';
+                                                                        // rtrim($cetak_nama,"");
+                                                                    }
+                                                                    echo implode( ', ', $myArray );
                                                                 }
-                                                                echo implode( ', ', $myArray );
-                                                            }
-                                                            ?>
+                                                                ?>
+                                                            </p>
+                                                            <!-- <a href="https://dewanstudio.biz/SIT/eria/category/location/japan/" rel="category tag">Japan</a>,  -->
+                                                            <!-- <a href="https://dewanstudio.biz/SIT/eria/category/filter/reduce/" rel="category tag">Reduce</a> -->
+                                                            <!-- <span class="fusion-inline-sep">|</span> -->
                                                         </p>
-                                                        <!-- <a href="https://dewanstudio.biz/SIT/eria/category/location/japan/" rel="category tag">Japan</a>,  -->
-                                                        <!-- <a href="https://dewanstudio.biz/SIT/eria/category/filter/reduce/" rel="category tag">Reduce</a> -->
-                                                        <!-- <span class="fusion-inline-sep">|</span> -->
-                                                    </p>
-                                                    <h2 class="blog-shortcode-post-title entry-title">
-                                                        <a href="<?php the_permalink();?>"><?php the_title(); ?></a>
-                                                    </h2>
-                                                    <div class="fusion-content-sep sep-double sep-solid" style="border-color:#e2e2e2;"></div>
-                                                    <div class="fusion-post-content-container">
-                                                        <p> <?php echo get_user_meta($post->post_author,'company_name',true);?> </p>
-                                                        <p style="visibility:hidden;"><span data-detail="<?php echo get_user_meta($post->post_author,'company_city',true);?>" ><?php echo get_user_meta($post->post_author,'company_city',true);?></span>, <span data-detail="<?php echo get_user_meta($post->post_author,'company_country',true);?>" ><?php echo get_user_meta($post->post_author,'company_country',true);?></span></p>
+                                                        <h2 class="blog-shortcode-post-title entry-title">
+                                                            <a href="<?php the_permalink();?>"><?php the_title(); ?></a>
+                                                        </h2>
+                                                        <div class="fusion-content-sep sep-double sep-solid" style="border-color:#e2e2e2;"></div>
+                                                        <div class="fusion-post-content-container">
+                                                            <p> <?php echo get_user_meta($post->post_author,'company_name',true);?> </p>
+                                                            <p style="visibility:hidden;"><span data-detail="<?php echo get_user_meta($post->post_author,'company_city',true);?>" ><?php echo get_user_meta($post->post_author,'company_city',true);?></span>, <span data-detail="<?php echo get_user_meta($post->post_author,'company_country',true);?>" ><?php echo get_user_meta($post->post_author,'company_country',true);?></span></p>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="fusion-clearfix"></div>
+
+                                                <!-- <h5 style="padding-bottom:10px;">  </h5>
+                                                <h4 class="readmore less">  </h4>
+                                                <p>
+                                                    <?php   $category_detail=get_the_category($_GET['id']);//$post->ID
+                                                        foreach($category_detail as $cd){
+                                                        echo $cd->cat_name;
+                                                        echo ",";
+                                                    }?>
+                                                </p>
+                                                <span style="display:block;">Company Name </span><br>
+                                                <a class="btn-download" href="">Read More</a> -->
+                                                
                                             </div>
-                                            <div class="fusion-clearfix"></div>
 
-                                            <!-- <h5 style="padding-bottom:10px;">  </h5>
-                                            <h4 class="readmore less">  </h4>
-                                            <p>
-                                                <?php   $category_detail=get_the_category($_GET['id']);//$post->ID
-                                                    foreach($category_detail as $cd){
-                                                    echo $cd->cat_name;
-                                                    echo ",";
-                                                }?>
-                                            </p>
-                                            <span style="display:block;">Company Name </span><br>
-                                            <a class="btn-download" href="">Read More</a> -->
-                                            
+                                        </article>
+                                        <style>
+                                            .wp-pagenavi {
+                                                clear: both;
+                                                display: flex;
+                                            }
+                                            .wp-pagenavi .pages {
+                                                display: none;
+                                            }
+                                            .wp-pagenavi span.current {
+                                                font-weight: bold;
+                                                background-color: #559ab0;
+                                                border-color: #e2e2e2;
+                                                color: #fff;
+                                            }
+                                            .wp-pagenavi a, .wp-pagenavi span {
+                                                text-decoration: none;
+                                                border: 1px solid #BFBFBF;
+                                                padding: 3px 5px;
+                                                margin: 2px;
+                                                width: 30px;
+                                                height: 30px;
+                                                margin-left: calc((30px)/ 10);
+                                                margin-right: calc((30px)/ 10);
+                                                line-height: 30px;
+                                                display: flex;
+                                                align-content: center;
+                                                justify-content: center;
+                                                align-items: center;
+                                                border-color: #e2e2e2;
+                                            }
+                                            .wp-pagenavi a.last {
+                                                width: auto;
+                                            }
+                                        </style>
+
+                                    <?php endwhile; ?>
+
+                                    <?php else : ?>
+                                        <div class="" style="margin-top: 50px;display: flex;flex-direction: column;align-content: center;align-items: center;">
+                                            <img src="<?php echo network_site_url( '/wp-content/uploads/2022/09/bs_no_data.png' ) ?>" alt="Sorry, no posts matched your criteria." srcset="<?php echo network_site_url( '/wp-content/uploads/2022/09/bs_no_data.png' ) ?>" width="170px">
+                                            <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
                                         </div>
-
-                                    </article>
-                                    <style>
-                                        .wp-pagenavi {
-                                            clear: both;
-                                            display: flex;
-                                        }
-                                        .wp-pagenavi .pages {
-                                            display: none;
-                                        }
-                                        .wp-pagenavi span.current {
-                                            font-weight: bold;
-                                            background-color: #559ab0;
-                                            border-color: #e2e2e2;
-                                            color: #fff;
-                                        }
-                                        .wp-pagenavi a, .wp-pagenavi span {
-                                            text-decoration: none;
-                                            border: 1px solid #BFBFBF;
-                                            padding: 3px 5px;
-                                            margin: 2px;
-                                            width: 30px;
-                                            height: 30px;
-                                            margin-left: calc((30px)/ 10);
-                                            margin-right: calc((30px)/ 10);
-                                            line-height: 30px;
-                                            display: flex;
-                                            align-content: center;
-                                            justify-content: center;
-                                            align-items: center;
-                                            border-color: #e2e2e2;
-                                        }
-                                        .wp-pagenavi a.last {
-                                            width: auto;
-                                        }
-                                    </style>
-
-                                <?php endwhile; ?>
-
-                                <?php else : ?>
-                                    <div class="" style="margin-top: 50px;display: flex;flex-direction: column;align-content: center;align-items: center;">
-                                        <img src="<?php echo network_site_url( '/wp-content/uploads/2022/09/bs_no_data.png' ) ?>" alt="Sorry, no posts matched your criteria." srcset="<?php echo network_site_url( '/wp-content/uploads/2022/09/bs_no_data.png' ) ?>" width="170px">
-                                        <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
-                                    </div>
-                                <?php endif; ?>
-                                
-                                <div class="fusion-clearfix"></div>
+                                    <?php endif; ?>
+                                    
+                                    <div class="fusion-clearfix"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
