@@ -190,16 +190,22 @@ function wpbt_coba_productedit()
                         // }
                         // echo implode( ', ', $myArray );
 
-
-
-
                         $category_detail=get_the_terms($_GET['id'], 'categori');
                         $myArray = array();
                         foreach($category_detail as $cd){
-                            $cetak_nama = $cd->name;
-							echo $cetak_nama;
+                            $myArray[] = '<span>'.ucfirst($cd->name).'</span>';
                         }
-                        $oke = implode( ', ', $myArray );
+                        echo implode( ', ', $myArray );
+
+
+
+                        // $category_detail=get_the_terms($_GET['id'], 'categori');
+                        // $myArray = array();
+                        // foreach($category_detail as $cd){
+                        //     $cetak_nama = $cd->name;
+						// 	echo $cetak_nama;
+                        // }
+                        // $oke = implode( ', ', $myArray );
                         // var_dump($oke);
 
 
