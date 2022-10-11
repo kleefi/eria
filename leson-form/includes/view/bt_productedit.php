@@ -174,7 +174,7 @@ function wpbt_coba_productedit()
         <!-- Pilih kategori -->
         <div class="sui-col-md-3">
             <div class="sui-box">
-                <div class="sui-box-header" style="display: inline-block;">
+                <div class="sui-box-header" style="display: none;">
                 <h3>Active Categories</h3>
                 <!-- <!?php echo get_user_meta( wp_get_current_user()->ID, 'company_country', true);?> -->
                     <?php
@@ -190,12 +190,27 @@ function wpbt_coba_productedit()
                         // }
                         // echo implode( ', ', $myArray );
 
-                        $category_detail=get_the_terms($_GET['id'], 'categori');
-                        $myArray = array();
-                        foreach($category_detail as $cd){
-                            $myArray[] = '<span>'.ucfirst($cd->name).'</span>';
-                        }
-                        echo implode( ', ', $myArray );
+                        // $category_detail=get_the_terms($_GET['id'], 'categori');
+                        // foreach ($category_detail as $term) {
+                        //     if( $term->parent == 0 ) {
+                        //         $name = $term->name;
+                        //         echo $name;
+                        //       }
+                        // }
+                        // $myArray = array();
+                        // foreach ($category_detail as $term) {
+                        //     if( $term->parent != 0 ) {
+                        //         $myArray[] = '<span>'.ucfirst($term->name).'</span>';
+                        //       }
+                        // }
+                        // echo implode( ', ', $myArray );
+
+
+                        // $myArray = array();
+                        // foreach($category_detail as $cd){
+                        //     $myArray[] = '<span>'.ucfirst($cd->name).'</span>';
+                        // }
+                        // echo implode( ', ', $myArray );
 
 
 
@@ -209,32 +224,32 @@ function wpbt_coba_productedit()
                         // var_dump($oke);
 
 
-                        $Parentcatargs = array(
-                            'orderby' => 'name',
-                            'order' => 'ASC',
-                            'use_desc_for_title' => 1,
-                            'hide_empty' => 0,
-                            'parent' => '0',
-                            'type'                     => 'job',
-                            'child_of'                 => 0,
-                            'taxonomy'                 => 'categori'
-                        );
-                            $allcategory = get_categories($Parentcatargs); 
-                            foreach ($allcategory as $category) {
-                            ?>
-                            <a class="btn">
-                                <?php 
-                                    $cetak = $category->cat_name;
+                        // $Parentcatargs = array(
+                        //     'orderby' => 'name',
+                        //     'order' => 'ASC',
+                        //     'use_desc_for_title' => 1,
+                        //     'hide_empty' => 0,
+                        //     'parent' => '0',
+                        //     'type'                     => 'job',
+                        //     'child_of'                 => 0,
+                        //     'taxonomy'                 => 'categori'
+                        // );
+                        //     $allcategory = get_categories($Parentcatargs); 
+                        //     foreach ($allcategory as $category) {
+                        //     ?!>
+                        //     <a class="btn">
+                        //         <?php 
+                        //             $cetak = $category->cat_name;
                               
-                                    // if($cetak==$oke){
-                                    //     echo $category_detail.' aktif';
-                                    // }else{
-                                    //     echo $cetak.' not active';
-                                    // }
-                                ?>
-                            </a>
-                            <?php 
-                        }
+                        //             // if($cetak==$oke){
+                        //             //     echo $category_detail.' aktif';
+                        //             // }else{
+                        //             //     echo $cetak.' not active';
+                        //             // }
+                        //         ?!>
+                        //     </a>
+                        //     <?php 
+                        // }
 
 
 
@@ -262,16 +277,29 @@ function wpbt_coba_productedit()
                             );
 
                             $category = get_categories($Parentcatargs);
-                            //print_r($category); //Return Array
+                            $category_detail=get_the_terms($_GET['id'], 'categori');
+                            // looping catch parent category
+                            foreach ($category_detail as $term) {
+                                if( $term->parent == 0 ) {
+                                    $parent_category = $term->name;
+                                  }
+                            }
+                            // looping catch parent category
 
                             foreach ($category as $Parentcat) {
                                 // echo '<input type="radio" name="categori[]" id="" value="'.$Parentcat->name.'">';
                                 //Get Parent Category Name
-                                echo '<input type="radio" name="categori[]" id="option" value="'.$Parentcat->name.'" class="c-option">'; 
-                                echo "<label for='option'>".$Parentcat->name."</label>";
+                                if($parent_category==$Parentcat->name){
+                                    echo '<input type="radio" name="categori[]" id="option" value="'.$Parentcat->name.'" class="c-option" checked>'; 
+                                    echo "<label for='option'>".$Parentcat->name."</label>";
+                                }else{
+                                    echo '<input type="radio" name="categori[]" id="option" value="'.$Parentcat->name.'" class="c-option">'; 
+                                    echo "<label for='option'>".$Parentcat->name."</label>";
+                                }
                                 //Get child Category Name
                                 // echo $Parentcat->name;
                                 // echo "<br>";
+
                                 $childargs = array(
                                     'child_of' => $Parentcat->cat_ID,
                                     'hide_empty' => 0,
@@ -280,13 +308,38 @@ function wpbt_coba_productedit()
                                 );
 
 
+                                // looping catch child category
+                                $myArray = array();
+                                foreach ($category_detail as $term ) {
+                                    if( $term->parent != 0 ) {
+                                        // $myArray[] = $term->name;
+                                        $child_category = $term->name;
+                                      }
+                                    //   echo $child_category;
+                                }
+                            
+                                // $child_category = implode(' ', $myArray);
+                                // foreach ($category_detail as $term) {
+                                //     if( $term->parent != 0 ) {
+                                //         $myArray[] = $term->name;
+                                //       }
+                                // }
+                                // $child_category = implode( ' ', $myArray );
+                                // echo '<p>'.$child_category.'</p>';
+                                // looping catch child category
+
                                 $childcategories = get_categories($childargs);
                                 //print_r($childcategories); //Return Array
                                 echo '<ul style="padding-left: 25px;">';
                                 foreach ($childcategories as $childcat) {
                                     echo '<li>';
                                     echo '<label>';
-                                    echo '<input type="checkbox" name="categori[]" id="" value="'.$childcat->name.'">'.$childcat->name.''; //Get child Category Name
+                                    if($childcat->name==$child_category){
+                                        echo '<input type="checkbox" name="categori[]" id="" value="'.$childcat->name.'" checked>'.$childcat->name.''; //Get child Category Name
+                                    }else{
+                                        echo '<input type="checkbox" name="categori[]" id="" value="'.$childcat->name.'">'.$childcat->name.''; //Get child Category Name
+                                    }
+                                    
                                     // echo $childcat->name;
                                     echo '</label>';
                                     echo '</li>';
