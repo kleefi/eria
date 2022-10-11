@@ -197,7 +197,7 @@ function wpbt_coba_productedit()
                             $cetak_nama = $cd->name;
 							echo $cetak_nama;
                         }
-                        // $oke = implode( '', $myArray );
+                        $oke = implode( ', ', $myArray );
                         // var_dump($oke);
 
 
