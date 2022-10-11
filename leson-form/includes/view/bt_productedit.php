@@ -151,7 +151,7 @@ function wpbt_coba_productedit()
             update_post_meta($post_id, "short_description",$_POST['short_description'], true);
             update_post_meta($post_id, "long_description",$_POST['long_description'], true);
             update_post_meta($post_id, "txtDistributionCountries", $_POST['txtDistributionCountries'], true);
-            update_post_meta($post_id, "country_search", get_user_meta( wp_get_current_user()->ID, 'company_country'), true);
+            update_post_meta($post_id, "country_search", get_user_meta( wp_get_current_user()->ID, 'company_country', true));
             update_post_meta($post_id, "txtVideoLink", $_POST['txtVideoLink'], true);
             update_post_meta($post_id, "condition1", $_POST['condition1'], true);
             update_post_meta($post_id, "condition2", $_POST['condition2'], true);
@@ -175,6 +175,7 @@ function wpbt_coba_productedit()
             <div class="sui-box">
                 <div class="sui-box-header" style="display: inline-block;">
                 <h3>Active Categories</h3>
+                <!-- <!?php echo get_user_meta( wp_get_current_user()->ID, 'company_country', true);?> -->
                     <?php
 						// $category_detail=get_the_terms($_GET['id'], 'categori');//$post->ID
 						// // print_r($category_detail);
