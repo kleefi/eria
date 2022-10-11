@@ -152,6 +152,7 @@ function wpbt_coba_productedit()
             update_post_meta($post_id, "long_description",$_POST['long_description'], true);
             update_post_meta($post_id, "txtDistributionCountries", $_POST['txtDistributionCountries'], true);
             update_post_meta($post_id, "country_search", get_user_meta( wp_get_current_user()->ID, 'company_country', true));
+            update_post_meta($post_id, "city_search", get_user_meta( wp_get_current_user()->ID, 'company_city', true));
             update_post_meta($post_id, "txtVideoLink", $_POST['txtVideoLink'], true);
             update_post_meta($post_id, "condition1", $_POST['condition1'], true);
             update_post_meta($post_id, "condition2", $_POST['condition2'], true);
